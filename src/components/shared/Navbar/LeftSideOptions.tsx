@@ -23,9 +23,9 @@ function LeftSideOptions({
 
   const logoAnimationController = useAnimation();
 
-  const handleLogoHover = () => {
-    logoAnimationController.start("hover");
-  };
+  // const handleLogoHover = () => {
+  //   logoAnimationController.start("hover");
+  // };
 
   const handleLogoLeave = () => {
     logoAnimationController.start("rest");

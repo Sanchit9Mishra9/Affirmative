@@ -2,7 +2,7 @@ import { ChevronRight } from "lucide-react";
 import { motion, useAnimation } from "framer-motion";
 // import { useState } from "react";
 // import Slider from "react-slick";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useState } from "react";
 import Slider from "react-slick";
 
@@ -151,7 +151,7 @@ const CardStyleTwo = ({
   title,
   field,
   desc,
-  link,
+  // link,
   img,
 }: {
   title: string;

@@ -2,7 +2,6 @@ import Hero from "../shared/Hero/Hero";
 import PopularProjects from "./PopularProjects";
 import Heading from "../shared/Heading";
 import Banner from "./Banner";
-import ClientLogo from "../shared/ClientLogo";
 import ImageCardLeft from "./ShowImageCard";
 import { Helmet } from "react-helmet";
 const Home = () => {
