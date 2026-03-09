@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: white;
+  color: rgb(0, 46, 98);
+}
+
+/* styles.css */
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+.hero-font {
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0);
+  /* Black with 50% opacity */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: #3d3d3d;
+  /* Red color for the scrollbar handle */
+  /* border-radius: 5px; */
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer utilities {}
+
+.card-shadow {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.text-stroke {
+  color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #ffffff;
+  text-transform: uppercase;
+  font-family: Calibri;
+}
+
+.skew-div {
+  transform: skewX(-10deg);
+}
+
+.courasel-transition {
+  transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.team-details-share-shadow {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.ReactCollapse--collapse {
+  transition: height 400ms;
+}
+
+.faq-question-shadow {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.contact-form-shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.nav-sublist-shadow {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.section-two-shadow {
+  box-shadow: inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075),
+    /* shadow ring 👇 */
+    0 0 0 1px hsla(0, 0%, 0%, 0.05),
+    /* multiple soft shadows 👇 */
+    0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
+    0 0.9px 1.5px hsla(0, 0%, 0%, 0.045), 0 3.5px 6px hsla(0, 0%, 0%, 0.09);
+}
+
+.services-left-clip-path {
+  /* clip-path: polygon(0% 0%, 100% 0, 65% 50%, 100% 100%, 0% 100%); */
+  clip-path: polygon(0% 0%, 100% 20%, 100% 50%, 100% 80%, 0% 100%);
+}
+
+.services-right-clip-path {
+  /* clip-path: polygon(35% 0, 100% 0%, 100% 100%, 35% 100%, 0% 50%); */
+  clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 80%, 0% 50%);
+  /* clip-path: polygon(0 24%, 100% 0%, 100% 100%, 0 76%, 0% 50%); */
+}
+
+.services-right-background {
+  background: rgb(42, 40, 40);
+  background: linear-gradient(90deg,
+      rgba(212, 198, 198, 0) 0%,
+      rgba(150, 141, 141, 0.09) 35%,
+      rgba(96, 90, 90, 0.17) 66%,
+      rgba(42, 40, 40, 0.41) 100%);
+}
+
+.industries-background {
+  background: radial-gradient(farthest-side at -33.33% 50%,
+      #0000 52%,
+      #1e1e1e 54% 57%,
+      #0000 59%) 0 calc(56px / 2),
+    radial-gradient(farthest-side at 50% 133.33%,
+      #0000 52%,
+      #1e1e1e 54% 57%,
+      #0000 59%) calc(56px / 2) 0,
+    radial-gradient(farthest-side at 133.33% 50%,
+      #0000 52%,
+      #1e1e1e 54% 57%,
+      #0000 59%),
+    radial-gradient(farthest-side at 50% -33.33%,
+      #0000 52%,
+      #1e1e1e 54% 57%,
+      #0000 59%),
+    #000000;
+  background-size: calc(56px / 4.667) 56px, 56px calc(56px / 4.667);
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(150px, 50px);
+    /* Move by 100px in X and 50px in Y */
+  }
+
+  50% {
+    transform: translate(100px, 159px);
+    /* Move by 200px in X and 100px in Y */
+  }
+
+  75% {
+    transform: translate(130px, 150px);
+    /* Move by 100px in X and 150px in Y */
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.blob-1 {
+  animation: move 5s infinite linear, spin 4s infinite linear;
+
+  animation-delay: 0s;
+  /* Delay for first blob */
+}
+
+.blob-2 {
+  animation: move 5s infinite linear, spin 4s infinite linear;
+
+  animation-delay: 0.5s;
+  /* Delay for second blob */
+}
+
+.blob-3 {
+  animation: move 4s infinite linear, spin 4s infinite linear;
+
+  animation-delay: 1s;
+  /* Delay for third blob */
+}
+
+.blob-4 {
+  animation: move 5s infinite linear, spin 4s infinite linear;
+
+  animation-delay: 1.5s;
+  /* Delay for fourth blob */
+}
+
+.blob-5 {
+  animation: move 4s infinite linear, spin 2s infinite linear;
+
+  animation-delay: 2s;
+  /* Delay for fifth blob */
+}
+
+.error-h1 {
+  color: #030005;
+  text-transform: uppercase;
+  text-shadow: -1px -1px 0 #a855f7, 1px 1px 0 #f97316;
+}
+
+.error-h2 {
+  text-transform: uppercase;
+  text-shadow: 0 2px 0 #a855f7;
+  letter-spacing: 13px;
+}
