@@ -97,7 +97,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en-IN"
       className={`${geistSans.variable} ${geistMono.variable} ${instrument.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-paper font-sans text-graphite">
+      <body
+        className="flex min-h-full flex-col bg-paper font-sans text-graphite"
+        suppressHydrationWarning
+      >
         <JsonLd data={organizationJsonLd()} />
         <Suspense fallback={<div className="h-[4.5rem] lg:h-[5rem]" />}>
           <SiteHeader />
