@@ -45,7 +45,7 @@ export default function ContactPage() {
             <div className="lg:col-span-5 lg:col-start-8">
               <EditorialImage
                 src="/images/contact.jpg"
-                alt="Conference room overlooking the city at dusk"
+                alt="Empty conference room overlooking the city at dusk"
                 className="aspect-[4/3]"
                 sizes="40vw"
               />

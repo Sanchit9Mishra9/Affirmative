@@ -37,7 +37,7 @@ export default function CareersPage() {
       </section>
       <EditorialImage
         src="/images/careers.jpg"
-        alt="Team moving through a contemporary atrium"
+        alt="Consultants walking through a contemporary office atrium"
         className="aspect-[21/8] w-full"
         sizes="100vw"
         priority

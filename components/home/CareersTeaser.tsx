@@ -26,7 +26,7 @@ export function CareersTeaser() {
           <MaskReveal className="lg:col-span-7">
             <EditorialImage
               src="/images/careers.jpg"
-              alt="Colleagues moving through a contemporary office atrium"
+              alt="Consultants walking through a contemporary office atrium"
               className="aspect-[16/10] w-full"
               sizes="(min-width: 1024px) 55vw, 100vw"
             />

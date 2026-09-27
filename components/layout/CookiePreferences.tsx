@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Modal } from "@/components/shared/Modal";
 
 const STORAGE_KEY = "trugro-cookie-preferences";
 
 function readAnalyticsPreference() {
+  if (typeof window === "undefined") return false;
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (!saved) return false;
@@ -23,13 +24,7 @@ export function CookiePreferences({
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }) {
-  // Start with a fixed value so server and client render the same markup
-  // on the first pass; the real preference is synced in after mount.
-  const [analytics, setAnalytics] = useState(false);
-
-  useEffect(() => {
-    setAnalytics(readAnalyticsPreference());
-  }, []);
+  const [analytics, setAnalytics] = useState(readAnalyticsPreference);
 
   const save = (next: boolean) => {
     localStorage.setItem(

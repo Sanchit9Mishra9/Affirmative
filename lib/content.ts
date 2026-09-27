@@ -76,7 +76,7 @@ export const capabilities: Capability[] = [
       },
     ],
     image: "/images/capability-strategy.jpg",
-    alt: "Leadership team in a strategy session for defence market entry",
+    alt: "Maps of India, folders and a roadmap on a strategy table",
   },
   {
     number: "02",
@@ -101,7 +101,7 @@ export const capabilities: Capability[] = [
       },
     ],
     image: "/images/capability-technology.jpg",
-    alt: "Systems environment used to position products for military evaluation",
+    alt: "Electro-optic sensor on a laboratory bench for military-spec product work",
   },
   {
     number: "03",
@@ -126,7 +126,7 @@ export const capabilities: Capability[] = [
       },
     ],
     image: "/images/capability-risk.jpg",
-    alt: "Controlled operations setting representing certification and procurement",
+    alt: "Aerospace component under inspection in a certification laboratory",
   },
   {
     number: "04",
@@ -151,7 +151,7 @@ export const capabilities: Capability[] = [
       },
     ],
     image: "/images/capability-people.jpg",
-    alt: "Advisors in discussion representing OEM, DPSU and service partnerships",
+    alt: "Quiet defence technology expo floor before opening",
   },
 ];
 
@@ -170,7 +170,7 @@ export const industries: Industry[] = [
       "Trial, certification and induction pathways",
     ],
     image: "/images/industry-manufacturing.jpg",
-    alt: "Industrial production floor representing UAV and counter-UAS manufacturing",
+    alt: "Reconnaissance UAV with an ISR camera gimbal on a quiet airfield",
   },
   {
     slug: "micro-nano-satellite",
@@ -186,7 +186,7 @@ export const industries: Industry[] = [
       "Make in India and programme entry",
     ],
     image: "/images/industry-technology.jpg",
-    alt: "Technology infrastructure representing micro and nano satellite programmes",
+    alt: "Micro satellite in a clean room during payload integration",
   },
   {
     slug: "combat-platforms",
@@ -202,7 +202,7 @@ export const industries: Industry[] = [
       "User requirements and procurement categories",
     ],
     image: "/images/capability-operations.jpg",
-    alt: "Manufacturing operations representing combat platform integration",
+    alt: "Armoured vehicle hull on an assembly line during sensor integration",
   },
   {
     slug: "rcws-electro-optics",
@@ -217,8 +217,8 @@ export const industries: Industry[] = [
       "Electro-optic sensing and targeting",
       "Platform integration with OEMs",
     ],
-    image: "/images/capability-technology.jpg",
-    alt: "Sensor and systems environment representing remote weapon stations and electro-optics",
+    image: "/images/domain-rcws.jpg",
+    alt: "Electro-optic sight and thermal camera on a workshop test stand",
   },
   {
     slug: "quantum",
@@ -234,7 +234,7 @@ export const industries: Industry[] = [
       "Defence-grade data processing",
     ],
     image: "/images/capability-data.jpg",
-    alt: "Data environment representing quantum sensing, cryptography and secure analytics",
+    alt: "Quantum optics laboratory with an optical table and cryostat",
   },
   {
     slug: "directed-energy",
@@ -250,7 +250,7 @@ export const industries: Industry[] = [
       "Policy, safety and programme positioning",
     ],
     image: "/images/industry-energy.jpg",
-    alt: "High-energy industrial setting representing directed energy programmes",
+    alt: "High-power laser research bench with an enclosed beam path",
   },
 ];
 
@@ -264,7 +264,7 @@ export const insights: Insight[] = [
     dateISO: "2026-03-01",
     read: "7 min",
     image: "/images/insight-ai.jpg",
-    alt: "Control-room environment representing AI systems for CI and CT operations",
+    alt: "Intelligence fusion room with map screens for situational awareness",
     pullQuote:
       "An AI system does not enter service because it is impressive. It enters because the use-case, the GSQR and the user are the same conversation.",
     body: [
@@ -282,7 +282,7 @@ export const insights: Insight[] = [
     dateISO: "2026-02-01",
     read: "6 min",
     image: "/images/case-operations.jpg",
-    alt: "Production hall representing combat platform ISR and strike integration",
+    alt: "Combat vehicle sensor mast being fitted in a factory bay",
     pullQuote:
       "A hull is not a combat system until sensing, strike and the procurement category are designed as one.",
     body: [
@@ -300,7 +300,7 @@ export const insights: Insight[] = [
     dateISO: "2026-01-01",
     read: "6 min",
     image: "/images/insight-strategy.jpg",
-    alt: "Strategic working environment representing secure tactical communications",
+    alt: "Optical wireless LiFi transceivers on a laboratory bench",
     pullQuote:
       "In an electronic-warfare environment, the communications path is part of the fight. Optical wireless has to earn its place in tactics, not just in a lab.",
     body: [
@@ -317,8 +317,8 @@ export const insights: Insight[] = [
     date: "December 2025",
     dateISO: "2025-12-01",
     read: "5 min",
-    image: "/images/capability-data.jpg",
-    alt: "Analytics environment representing defence-grade quantum data processing",
+    image: "/images/insight-quantum.jpg",
+    alt: "Secure data hall representing defence-grade processing",
     pullQuote:
       "Quantum in defence is not a research poster. It is a processing problem on datasets the forces already hold.",
     body: [

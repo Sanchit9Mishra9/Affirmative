@@ -26,6 +26,8 @@ export function Perspective() {
         src="/images/perspective-dark.jpg"
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         style={{ y }}
         className="absolute inset-0 h-[120%] w-full object-cover opacity-70"
       />

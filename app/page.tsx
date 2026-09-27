@@ -45,6 +45,12 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <link
+        rel="preload"
+        as="image"
+        href="/images/hero-architecture.jpg"
+        fetchPriority="high"
+      />
       <Hero />
       <BrandStatement />
       <Capabilities />

@@ -46,7 +46,7 @@ export default function AboutPage() {
       </section>
       <EditorialImage
         src="/images/about.jpg"
-        alt="Quiet contemporary interior overlooking the city"
+        alt="Quiet office interior overlooking an Indian city at dusk"
         className="aspect-[21/8] w-full"
         sizes="100vw"
         priority
