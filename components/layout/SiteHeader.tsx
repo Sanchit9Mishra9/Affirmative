@@ -1,50 +1,36 @@
 "use client";
 
-import { useMemo, useState, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, Search, X } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
-import { Container } from "@/components/shared/Layout";
-import { capabilities, industries, nav } from "@/lib/content";
+import { capabilities, nav, technologies } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { SearchDialog } from "@/components/layout/SearchDialog";
-
-type Mega = "capabilities" | "industries" | null;
-
-function subscribeScroll(onChange: () => void) {
-  window.addEventListener("scroll", onChange, { passive: true });
-  return () => window.removeEventListener("scroll", onChange);
-}
-
-function getScrolled() {
-  return window.scrollY > 24;
-}
 
 export function SiteHeader() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const scrolled = useSyncExternalStore(subscribeScroll, getScrolled, () => false);
-  const [mega, setMega] = useState<Mega>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-  const [industryPreview, setIndustryPreview] = useState(industries[0].slug);
+  const [expanded, setExpanded] = useState<string | null>(null);
   const [navPath, setNavPath] = useState(pathname);
 
   if (pathname !== navPath) {
     setNavPath(pathname);
-    setMega(null);
-    setMobileOpen(false);
+    setOpen(false);
+    setExpanded(null);
   }
 
-  const inverted = isHome && !scrolled && !mega && !mobileOpen;
-  const solid = !inverted;
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
-  const preview = useMemo(
-    () => industries.find((item) => item.slug === industryPreview) ?? industries[0],
-    [industryPreview]
-  );
+  const inverted = isHome && !open;
 
   return (
     <>
@@ -55,70 +41,34 @@ export function SiteHeader() {
         Skip to content
       </a>
       <header
-        onMouseLeave={() => setMega(null)}
         className={cn(
           "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
-          solid ? "bg-paper/95" : "bg-transparent"
+          open || !isHome ? "bg-paper/95" : "bg-transparent"
         )}
       >
-        <Container className="flex h-[4.5rem] items-center gap-8 lg:h-[5rem]">
-          <Logo inverted={inverted} />
-
-          <nav
-            className="hidden flex-1 items-center justify-center gap-9 lg:flex"
-            aria-label="Primary"
+        <div className="mx-auto flex h-[4.5rem] w-full max-w-[92rem] items-center gap-4 px-5 md:h-[5rem] md:px-10 xl:px-16">
+          <button
+            type="button"
+            className={cn("p-1", inverted ? "text-paper" : "text-graphite")}
+            aria-label={open ? "Close menu" : "Open menu"}
+            aria-expanded={open}
+            onClick={() => setOpen((value) => !value)}
           >
-            {nav.primary.map((item) => {
-              const isMega = "mega" in item && item.mega;
-              const current =
-                item.href !== "/" && pathname.startsWith(item.href);
-              if (isMega) {
-                return (
-                  <button
-                    key={item.label}
-                    type="button"
-                    className={cn(
-                      "nav-link",
-                      inverted ? "text-paper" : "text-graphite"
-                    )}
-                    data-open={mega === item.mega}
-                    aria-expanded={mega === item.mega}
-                    aria-haspopup="true"
-                    onMouseEnter={() => setMega(item.mega as Mega)}
-                    onFocus={() => setMega(item.mega as Mega)}
-                    onClick={() =>
-                      setMega((open) =>
-                        open === item.mega ? null : (item.mega as Mega)
-                      )
-                    }
-                  >
-                    {item.label}
-                  </button>
-                );
-              }
-              return (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  aria-current={current ? "page" : undefined}
-                  className={cn(
-                    "nav-link",
-                    inverted ? "text-paper" : "text-graphite"
-                  )}
-                  onMouseEnter={() => setMega(null)}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
+            {open ? (
+              <X className="size-6" strokeWidth={1.5} />
+            ) : (
+              <Menu className="size-6" strokeWidth={1.5} />
+            )}
+          </button>
 
-          <div className="ml-auto flex items-center gap-5 lg:ml-0">
+          <Logo inverted={inverted} className="[&_img]:h-8 md:[&_img]:h-9" />
+
+          <div className="ml-auto flex items-center gap-5">
             <button
               type="button"
               aria-label="Search"
               onClick={() => {
-                setMega(null);
+                setOpen(false);
                 setSearchOpen(true);
               }}
               className={cn(
@@ -135,145 +85,103 @@ export function SiteHeader() {
                 inverted ? "text-paper" : "text-graphite"
               )}
             >
-              Contact Us
+              Connect
             </Link>
-            <button
-              type="button"
-              className={cn(
-                "p-1 lg:hidden",
-                inverted ? "text-paper" : "text-graphite"
-              )}
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              onClick={() => {
-                setMega(null);
-                setMobileOpen((open) => !open);
-              }}
-            >
-              {mobileOpen ? (
-                <X className="size-5" strokeWidth={1.5} />
-              ) : (
-                <Menu className="size-5" strokeWidth={1.5} />
-              )}
-            </button>
           </div>
-        </Container>
-
-        {mega ? (
-          <div className="border-t border-line bg-paper">
-            {mega === "capabilities" ? (
-              <Container className="grid grid-cols-12 gap-10 py-12">
-                <div className="col-span-4 max-w-sm">
-                  <p className="text-[0.6875rem] tracking-[0.22em] uppercase text-stone">
-                    What we do
-                  </p>
-                  <p className="editorial mt-4 text-3xl leading-tight text-graphite">
-                    From market entry to a procurement win.
-                  </p>
-                  <Link
-                    href="/what-we-do"
-                    className="mt-8 inline-flex text-sm tracking-wide text-graphite"
-                  >
-                    <span className="link-underline">
-                      Explore all capabilities
-                    </span>
-                  </Link>
-                </div>
-                <div className="col-span-8 grid grid-cols-2 gap-x-10 gap-y-1">
-                  {capabilities.map((item) => (
-                    <Link
-                      key={item.slug}
-                      href={`/what-we-do/${item.slug}`}
-                      className="group flex gap-4 border-t border-line py-5"
-                    >
-                      <span className="text-xs text-stone">{item.number}</span>
-                      <span>
-                        <span className="block text-[0.95rem] text-graphite">
-                          {item.title}
-                        </span>
-                        <span className="mt-1 block max-w-xs text-sm text-stone opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                          {item.short}
-                        </span>
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </Container>
-            ) : (
-              <Container className="grid grid-cols-12 gap-10 py-10">
-                <div className="col-span-5">
-                  <p className="text-[0.6875rem] tracking-[0.22em] uppercase text-stone">
-                    Domains
-                  </p>
-                  <ul className="mt-6">
-                    {industries.map((item) => (
-                      <li key={item.slug}>
-                        <Link
-                          href={`/domains/${item.slug}`}
-                          onMouseEnter={() => setIndustryPreview(item.slug)}
-                          className={cn(
-                            "flex items-center justify-between border-t border-line py-3.5 text-[0.95rem] transition-colors",
-                            preview.slug === item.slug
-                              ? "text-graphite"
-                              : "text-stone hover:text-graphite"
-                          )}
-                        >
-                          {item.title}
-                          <span
-                            className={cn(
-                              "size-1.5 bg-growth transition-opacity",
-                              preview.slug === item.slug
-                                ? "opacity-100"
-                                : "opacity-0"
-                            )}
-                          />
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="col-span-7">
-                  <div className="relative aspect-[16/9] overflow-hidden bg-graphite">
-                    <Image
-                      src={preview.image}
-                      alt={preview.alt}
-                      width={1280}
-                      height={720}
-                      className="h-full w-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-graphite/25" />
-                    <div className="absolute bottom-0 left-0 right-0 p-8 text-paper">
-                      <p className="editorial text-xl">{preview.title}</p>
-                      <p className="mt-2 max-w-md text-sm text-paper/80">
-                        {preview.short}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Container>
-            )}
-          </div>
-        ) : null}
-
-        {mobileOpen ? (
-          <nav
-            className="mx-auto w-full max-w-[92rem] border-t border-line bg-paper px-5 py-6 md:px-10 lg:hidden xl:px-16"
-            aria-label="Mobile"
-          >
-            {nav.primary.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="block border-b border-line py-4 text-lg text-graphite"
-              >
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/contact" className="block py-4 text-lg text-graphite">
-              Contact Us
-            </Link>
-          </nav>
-        ) : null}
+        </div>
       </header>
+
+      {open ? (
+        <div className="fixed inset-0 z-40 overflow-y-auto bg-paper pt-[4.5rem] md:pt-[5rem]">
+          <nav
+            aria-label="Site"
+            className="mx-auto grid w-full max-w-[92rem] gap-12 px-5 py-10 md:grid-cols-12 md:px-10 md:py-16 xl:px-16"
+          >
+            <div className="md:col-span-7">
+              <ul>
+                {nav.menu.map((item) => {
+                  const hasChildren = "children" in item && item.children;
+                  const isOpen = expanded === item.label;
+                  const childItems =
+                    item.children === "capabilities"
+                      ? capabilities.map((cap) => ({
+                          title: cap.title,
+                          href: `/capabilities/${cap.slug}`,
+                        }))
+                      : item.children === "technologies"
+                        ? technologies.map((tech) => ({
+                            title: tech.title,
+                            href: `/technology/${tech.slug}`,
+                          }))
+                        : [];
+
+                  return (
+                    <li key={item.label} className="border-b border-line">
+                      <div className="flex items-center justify-between gap-4">
+                        <Link
+                          href={item.href}
+                          className="flex-1 py-4 font-display text-3xl text-graphite md:text-4xl"
+                        >
+                          {item.label}
+                          {"soon" in item && item.soon ? (
+                            <span className="ml-3 align-middle text-[0.65rem] tracking-[0.18em] uppercase text-stone">
+                              Coming soon
+                            </span>
+                          ) : null}
+                        </Link>
+                        {hasChildren ? (
+                          <button
+                            type="button"
+                            aria-expanded={isOpen}
+                            aria-label={`${isOpen ? "Hide" : "Show"} ${item.label} pages`}
+                            onClick={() =>
+                              setExpanded((current) =>
+                                current === item.label ? null : item.label
+                              )
+                            }
+                            className="px-2 py-4 text-sm text-stone"
+                          >
+                            {isOpen ? "–" : "+"}
+                          </button>
+                        ) : null}
+                      </div>
+                      {hasChildren && isOpen ? (
+                        <ul className="grid gap-x-8 pb-6 sm:grid-cols-2">
+                          {childItems.map((child) => (
+                            <li key={child.href}>
+                              <Link
+                                href={child.href}
+                                className="block py-2 text-sm text-stone hover:text-graphite"
+                              >
+                                {child.title}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : null}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+            <div className="md:col-span-4 md:col-start-9">
+              <p className="text-[0.6875rem] tracking-[0.2em] uppercase text-stone">
+                Connect with us
+              </p>
+              <p className="editorial mt-4 text-2xl text-graphite">
+                Tell us about the product and the service you want to reach.
+              </p>
+              <Link
+                href="/contact"
+                className="mt-8 inline-flex text-sm tracking-wide text-graphite"
+              >
+                <span className="link-underline">Write to Trugro</span>
+              </Link>
+            </div>
+          </nav>
+        </div>
+      ) : null}
+
       <SearchDialog open={searchOpen} onOpenChange={setSearchOpen} />
     </>
   );

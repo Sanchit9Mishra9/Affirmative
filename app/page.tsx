@@ -1,15 +1,5 @@
 import type { Metadata } from "next";
-import { BrandStatement } from "@/components/home/BrandStatement";
-import { Capabilities } from "@/components/home/Capabilities";
-import { CareersTeaser } from "@/components/home/CareersTeaser";
-import { FeaturedStory } from "@/components/home/FeaturedStory";
-import { Faq } from "@/components/home/Faq";
-import { Hero } from "@/components/home/Hero";
-import { Impact } from "@/components/home/Impact";
-import { Industries } from "@/components/home/Industries";
-import { Insights } from "@/components/home/Insights";
-import { Perspective } from "@/components/home/Perspective";
-import { ClosingCta } from "@/components/shared/ClosingCta";
+import { HomeCarousel } from "@/components/home/HomeCarousel";
 import { pageMetadata } from "@/lib/seo";
 
 const homeSeo = pageMetadata({
@@ -17,6 +7,8 @@ const homeSeo = pageMetadata({
   description:
     "Trugro Advisors LLP helps enterprises enter India’s defence ecosystem — market entry, GSQR positioning, iDEX and MAKE procurement, and OEM–DPSU partnerships.",
   path: "/",
+  image: "/images/hero-india-gate.jpg",
+  imageAlt: "Kartavya Path looking toward India Gate at dusk",
   keywords: [
     "defence strategy consulting India",
     "defence procurement consulting",
@@ -48,20 +40,10 @@ export default function HomePage() {
       <link
         rel="preload"
         as="image"
-        href="/images/hero-architecture.jpg"
+        href="/images/hero-india-gate.jpg"
         fetchPriority="high"
       />
-      <Hero />
-      <BrandStatement />
-      <Capabilities />
-      <FeaturedStory />
-      <Industries />
-      <Impact />
-      <Insights />
-      <Perspective />
-      <Faq />
-      <CareersTeaser />
-      <ClosingCta />
+      <HomeCarousel />
     </>
   );
 }

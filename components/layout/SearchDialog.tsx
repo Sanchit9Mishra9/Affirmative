@@ -24,7 +24,7 @@ export function SearchDialog({
         setQuery("");
       }}
       title="Search Trugro"
-      description="Find capabilities, domains and engagements."
+      description="Find capabilities, technology and engagements."
     >
       <div className="relative">
         <Search
@@ -42,7 +42,7 @@ export function SearchDialog({
       <div className="mt-4 min-h-24">
         {query && results.length === 0 ? (
           <p className="py-6 text-sm text-stone">
-            No matches. Try a capability, domain or topic.
+            No matches. Try a capability, technology or topic.
           </p>
         ) : (
           <ul>

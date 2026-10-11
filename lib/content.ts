@@ -1,16 +1,18 @@
 export type Capability = {
-  number: string;
   slug: string;
   title: string;
+  heroTitle?: string;
   short: string;
-  summary: string;
-  body: string;
-  approach: { title: string; text: string }[];
+  tagline: string;
+  overview: string;
+  context: string;
+  work: { title: string; text: string }[];
+  impact: { title: string; text: string }[];
   image: string;
   alt: string;
 };
 
-export type Industry = {
+export type Technology = {
   slug: string;
   title: string;
   short: string;
@@ -19,6 +21,7 @@ export type Industry = {
   issues: string[];
   image: string;
   alt: string;
+  subsections?: { title: string; text: string; points: string[] }[];
 };
 
 export type Insight = {
@@ -45,117 +48,376 @@ export type Leader = {
 export const firm = {
   name: "Trugro",
   legal: "Trugro Advisors LLP",
-  tagline: "Building Defence Enterprises Today",
+  tagline: "Building defence enterprise today",
   values: "Growth. Trust. Commitment.",
   email: "connect@trugro.in",
   descriptor: "Defence strategy consulting",
   url: "https://trugro.in",
 };
 
+export const impactStats = [
+  { value: "3", label: "countries served" },
+  { value: "3", label: "of top defence companies served" },
+  { value: "10+", label: "A & D experts" },
+];
+
 export const capabilities: Capability[] = [
   {
-    number: "01",
-    slug: "strategic-advisory",
-    title: "Strategic Advisory",
-    short: "Defence market entry with a map, not a pitch.",
-    summary:
-      "We help companies decide where they belong in India’s defence ecosystem — and what must change in the product, the company and the story before they enter.",
-    body: "India’s defence market rewards preparation, not enthusiasm. Trugro works with founders and corporate leadership to assess technology readiness, map policy and regulation, and build a market-entry roadmap that can survive contact with the Ministry of Defence, the services and DPSUs. We start with an honest view of product-market fit: what the forces will actually buy, under which category, and on what timeline.",
-    approach: [
+    slug: "aftermarket-and-services",
+    title: "Aftermarket & Services",
+    short:
+      "Trugro Advisors helps defence enterprises unlock long-term, high-margin value by capturing the extensive aftermarket potential across armed forces platforms. By conducting installed base assessments across military assets and DPSU programs, the firm identifies lifecycle replacement opportunities, optimizes spares pricing, and streamlines depot-level maintenance and operations.",
+    tagline:
+      "Unlocking the largest source of recurring value in Indian defence through fleet-wide sustainment, performance logistics, and life-cycle economics",
+    overview:
+      "Winning a defence procurement contract is only the entry point; the enduring profitability of any defence enterprise lies in post-procurement sustainment. While primary equipment sales face cyclical budget windows, the aftermarket represents an untapped opportunity for Indian manufacturers, DPSUs, and global OEMs. Trugro Advisors helps defence enterprises transition from transactional equipment suppliers into long-term sustainment partners, setting up recurring revenue lines across the complete equipment lifecycle.",
+    context:
+      "Defence procurement cycles under DAP and Buy (Indian-IDDM) increasingly mandate life-cycle support commitments of up to 10–20 years. Despite this, many defence contractors operate with fragmented supply networks, lack visibility into fleet deployment, and rely on ad-hoc cost-plus pricing that depresses margins. Without a clear roadmap for depot-level maintenance, spares availability, and performance-based contracts, original equipment manufacturers cede critical value back to intermediaries or suffer from prolonged field obsolescence.",
+    work: [
       {
-        title: "Defence market entry",
-        text: "Build a sequenced roadmap for Army, Navy, Air Force or MHA — including who decides, who evaluates and who pays.",
+        title: "Commercial Strategy & Fleet Monetisation",
+        text: "We help defence suppliers define high-margin service menus, implement value-based pricing over standard cost-plus models for spares, and structure multi-year Annual/Comprehensive Maintenance Contracts (AMC/CMC) tailored to Armed Forces and paramilitary operational tempos.",
       },
       {
-        title: "Technology readiness",
-        text: "Audit TRL, IP and military applicability so the company knows the gap between a commercial product and a defence-grade system.",
+        title: "Installed Base Diagnostics & Forecasting",
+        text: "Utilizing military asset tracking and historical maintenance logs, we construct analytical forecasting models to map the installed base of vehicles, electro-optics, and communication payloads across commands to predict replacement intervals and demand spikes.",
       },
       {
-        title: "Policy and regulation",
-        text: "Translate indigenisation norms, offset obligations and current procurement policy into decisions leadership can act on.",
+        title: "Sustainment Operations & Supply Chain Optimization",
+        text: "We engineer defence supply chains to guarantee operational availability metrics, establish automated regional inventory hubs, and ensure all components adhere to DGQA/DGAQA and indigenous content (IC) compliance.",
+      },
+      {
+        title: "Performance-Based Logistics (PBL) Transition",
+        text: "We structure risk-shared contracts aligned with Indian defence procurement guidelines, shifting client models from reactive defect rectification to guaranteed platform uptime and Mission-Capable Rates (MCR).",
+      },
+    ],
+    impact: [
+      {
+        title: "Challenge",
+        text: "A tactical systems manufacturer was consistently generating below-potential.",
+      },
+      {
+        title: "Long-Term Order Pipeline & Lifecycle Scale",
+        text: "Driving long-term defence relationships, ongoing field support, and scale beyond initial contract award to sustain continuous platform operations.",
+      },
+      {
+        title: "Quality & Environmental Maintenance Compliance",
+        text: "Directing environmental testing and DGQA/DGAQA compliance protocols to maintain military-grade performance across field deployments.",
       },
     ],
     image: "/images/capability-strategy.jpg",
-    alt: "Maps of India, folders and a roadmap on a strategy table",
+    alt: "Maps, folders and a sustainment roadmap on a defence strategy table",
   },
   {
-    number: "02",
-    slug: "product-positioning",
-    title: "Product Positioning",
-    short: "Map the product to how the forces actually buy.",
-    summary:
-      "Commercial products rarely meet military specifications without repositioning. We align systems to GSQRs, trial pathways and the way evaluators read a capability.",
-    body: "The gap between a working prototype and a force-accepted system is where most defence ambitions stall. Trugro maps products to General Staff Qualitative Requirements, prepares teams for trials and evaluation, and guides the military-grade adaptations that procurement actually demands — interoperability, environmental qualification, and a value proposition the user community will recognise.",
-    approach: [
+    slug: "digital-and-analytics",
+    title: "Digital & Analytics",
+    short:
+      "To address the demands of modern multi-domain warfare, Trugro enables clients to build and deploy scalable digital solutions tailored specifically to the defence and aerospace sector. Trugro leverages deep-tech capabilities—including artificial intelligence, machine learning, quantum computing, and secure optical communications—to enhance sensor fusion, ISR data processing, and tactical decision-support systems.",
+    tagline:
+      "Deploying mission-grade digital architectures, battlefield intelligence, and deep-tech algorithms from tactical edge devices to central command.",
+    overview:
+      "The modern battlespace is defined by information dominance, sensor-to-shooter latency, and algorithmic autonomy. For technology firms entering the defence arena, the challenge is not just coding software—it is engineering EW-resilient, deterministic, and MIL-STD compliant computational solutions. Trugro Advisors guides deep-tech innovators to translate commercial algorithms into hardened, sovereign capabilities tailored to the Indian Armed Forces.",
+    context:
+      "Defence operators require autonomous systems that function seamlessly in zero-connectivity and GPS-denied tactical environments. Commercial software often fails military adoption due to high compute overheads, vulnerability to electronic jamming, lack of interoperability, and non-compliance with military data-security protocols. Winning programmes requires a tech-first approach that bridges the gap between lab-level code and field-proven combat algorithms.",
+    work: [
       {
-        title: "GSQR and specification mapping",
-        text: "Place the product against published and emerging requirements so positioning is evidence, not aspiration.",
+        title: "Mission AI & Operational Analytics",
+        text: "We guide the development of edge-computing neural networks for automated target recognition (ATR), Counter-Insurgency/Counter-Terrorism (CI/CT) tactical analysis, and multi-sensor intelligence fusion (EO/IR, radar, telemetry).",
       },
       {
-        title: "Trial and evaluation preparation",
-        text: "Prepare the company for unit-level demonstrations, user feedback cycles and the questions evaluators will ask.",
+        title: "Quantum & Resilient Communications",
+        text: "We help clients incorporate Quantum Random Number Generation (QRNG), post-quantum cryptography, and EW-hardened optical/LiFi communication architectures designed for tamper-proof data relay in active electronic warfare zones.",
       },
       {
-        title: "Military-grade adaptation",
-        text: "Identify what must change in form, fit, function and documentation to meet defence QA and interoperability demands.",
+        title: "Autonomous Swarm & Edge Architecture",
+        text: "We design orchestration protocols for heterogeneous UAV/UGV swarms, distributed edge-compute payloads, and AI-enabled Command & Control (C2) operational software.",
+      },
+      {
+        title: "Military Software Assurance & Certification",
+        text: "We assist developers in navigating military software standards, cyber-hardening frameworks, and formal vulnerability clearing through Indian military certifying agencies.",
       },
     ],
-    image: "/images/capability-technology.jpg",
-    alt: "Electro-optic sensor on a laboratory bench for military-spec product work",
+    impact: [
+      {
+        title: "AI System for CI / CT Operations",
+        text: "Developed and positioned an AI-enabled system for Counter-Insurgency and Counter-Terrorism operational use cases, spanning use-case definition, GSQR alignment, and stakeholder engagement.",
+      },
+      {
+        title: "Quantum-Powered Data Processing",
+        text: "Developed a defence-grade data processing solution leveraging quantum techniques to achieve faster, secure analytics on massive mission datasets.",
+      },
+      {
+        title: "Secure LiFi Optical Communications",
+        text: "Advised on an EW-resilient optical wireless communication system for Indian Army tactical environments, guiding use-case validation, productization, and field trial pathways.",
+      },
+    ],
+    image: "/images/capability-data.jpg",
+    alt: "Secure data hall representing defence-grade digital processing",
   },
   {
-    number: "03",
-    slug: "procurement-strategy",
-    title: "Procurement Strategy",
-    short: "Navigate the categories that turn interest into orders.",
-    summary:
-      "We guide clients through RFP and RFI processes, iDEX and MAKE routes, and the compliance and certification work that sits between a trial and a contract.",
-    body: "Defence procurement is a sequence, not a single meeting. Trugro helps clients choose the right entry category — iDEX, MAKE-I/II, Buy Indian–IDDM and related routes — then stay with them through DGQA and DGAQA processes, EMI/EMC and environmental testing, TEC and staff evaluation, and price negotiation. The work is operational: papers, protocols, indigenous-content norms and the cadence of the committees that decide.",
-    approach: [
+    slug: "ma-and-strategic-alliances",
+    title: "M&A & Strategic Alliances",
+    short:
+      "Trugro partners with defence companies and global OEMs to evaluate high-value targets, build strategic joint ventures, and navigate complex post-merger integration. With a deep understanding of Make in India mandates, offset obligations, and Buy (Indian-IDDM) guidelines, the firm identifies capability gaps and structures cross-border technology transfers.",
+    tagline:
+      "Accelerating strategic market positioning through sovereign JV structuring, technology transfers, and cross-border offset execution.",
+    overview:
+      "Strategic capital in defence is unlike any other sector—it requires compliance with national security frameworks, industrial licensing, and indigenous content mandates. Whether evaluating targeted acquisitions, structuring consortia for high-value tenders, or monetizing offset obligations, Trugro Advisors provides end-to-end transaction advisory to create long-term strategic value across India’s aerospace and defence industrial base.",
+    context:
+      "India’s defence modernisation target of 75% indigenisation demands rapid domestic capacity building. Large domestic enterprises and mid-size suppliers need rapid access to proprietary designs and precision manufacturing techniques, while foreign OEMs require certified domestic partners to fulfill Make in India criteria and offset commitments. Mergers and acquisitions without rigorous evaluation of Technical Readiness Levels (TRL) and regulatory clearances risk capital destruction.",
+    work: [
       {
-        title: "RFP and RFI navigation",
-        text: "Read the requirement, shape the response, and keep the company coherent through evaluation queries.",
+        title: "Strategic Target Evaluation & Due Diligence",
+        text: "We conduct technology and regulatory due diligence on target firms, evaluating proprietary IP, production capacity, military test certifications, and security clearance status.",
       },
       {
-        title: "iDEX and MAKE support",
-        text: "Position innovation programmes and MAKE projects so they are more than a grant — they are a path to induction.",
+        title: "Make-in-India Consortia Structuring",
+        text: "We architect joint ventures and consortium frameworks between Tier-1 prime contractors, MSMEs, and design houses to compete for high-value Buy-Indian-IDDM and Make-I/II tenders.",
       },
       {
-        title: "Compliance and certification",
-        text: "Guide DGQA/DGAQA, environmental and EMI/EMC testing, and indigenous content so certification is planned, not improvised.",
+        title: "Foreign OEM & Offset Advisory",
+        text: "We assist international defence manufacturers in identifying qualified Indian offset partners (IOPs), establishing licensed manufacturing lines, and executing sustainable offset credits.",
+      },
+      {
+        title: "Post-Merger Operational Integration",
+        text: "We guide the integration of disparate engineering protocols, consolidate defence production licenses, and align commercial reporting with MoD oversight requirements.",
+      },
+    ],
+    impact: [
+      {
+        title: "Make-in-India & Offset Partnerships",
+        text: "Structuring collaborations between domestic defence firms and foreign OEMs seeking Make-in-India manufacturing routes and offset fulfillment.",
+      },
+      {
+        title: "OEM & DPSU Partnerships",
+        text: "Facilitating strategic partnerships with Defence Public Sector Undertakings (DPSUs) and major OEMs to scale production footprints and address joint tenders.",
+      },
+    ],
+    image: "/images/capability-people.jpg",
+    alt: "Quiet defence technology expo floor before opening",
+  },
+  {
+    slug: "marketing-and-sales",
+    title: "Marketing & Sales",
+    short:
+      "Bridging the gap between commercial innovators and armed forces decision-makers, Trugro designs targeted go-to-market and sales strategies to win critical defence contracts. Trugro guides clients through every phase of the procurement cycle, from early GSQR alignment and RFI/RFP navigation to formal technical evaluations and price negotiations. By leveraging an extensive institutional network across the Ministry of Defence, service headquarters, and DPSUs, Trugro ensures breakthrough technologies gain the visibility and positioning needed to secure multi-year purchase orders.",
+    tagline:
+      "Navigating the labyrinth of Indian defence procurement to convert technological innovation into multi-year contract awards.",
+    overview:
+      "In the defence domain, conventional sales techniques fail. Success demands an in-depth understanding of the Defence Acquisition Procedure (DAP), user trial dynamics, and institutional alignment. Trugro Advisors acts as the strategic growth partner for technology innovators, engineering companies, and foreign primes, systematically positioning products before armed forces decision-makers and turning pipeline opportunities into procurement victories.",
+    context:
+      "The procurement lifecycle spans 18 to 36 months, passing through Requests for Information (RFI), General Staff Qualitative Requirements (GSQR) formulation, RFP issuance, multi-terrain user trials, and technical evaluation committees. Many companies develop superior military-grade hardware but miss opportunities because they enter the pipeline too late or misread service headquarters requirements. Winning requires deliberate, proactive stakeholder alignment from day zero.",
+    work: [
+      {
+        title: "Institutional Pipeline Navigation",
+        text: "We identify early-stage capabilities roadmaps across the Indian Army, Air Force, Navy, and Coast Guard, tracking Expressions of Interest (EoI) and upcoming RFP tenders.",
+      },
+      {
+        title: "GSQR Mapping & Technical Positioning",
+        text: "We deconstruct service qualitative requirements, translating customer capability needs into precise technical specifications that showcase client advantages during Staff Evaluations.",
+      },
+      {
+        title: "Expo & Demonstration Strategy",
+        text: "We design and lead high-impact technical demonstrations at DefExpo, Aero India, and regional command demonstrations to engage technical directors and field commanders.",
+      },
+      {
+        title: "Tender & Commercial Proposal Architecture",
+        text: "We structure compliant, competitive techno-commercial bids that clear Technical Evaluation Committees (TEC) and optimize Price Negotiation Committee (PNC) milestones.",
+      },
+    ],
+    impact: [
+      {
+        title: "Tender & Acquisition Navigation",
+        text: "Navigating RFP/RFI workflows and capital acquisition routes across iDEX, MAKE-I, MAKE-II, and Buy-Indian-IDDM categories.",
+      },
+      {
+        title: "Institutional Representation & Expos",
+        text: "Directing client positioning, technical marketing, and representation at major defence expos to build an active, multi-year order book.",
+      },
+      {
+        title: "PNC & Technical Evaluation Support",
+        text: "Supporting client engagements across Technical Evaluation Committees (TEC), Staff Evaluations, GSE, and Price Negotiation Committees (PNC).",
       },
     ],
     image: "/images/capability-risk.jpg",
     alt: "Aerospace component under inspection in a certification laboratory",
   },
   {
-    number: "04",
-    slug: "business-development",
-    title: "Business Development",
-    short: "Relationships that make a product visible to decision-makers.",
-    summary:
-      "Without trusted access across MoD, DPSUs and OEMs, even strong products remain invisible. We open the right rooms and stay through the order pipeline.",
-    body: "Trugro was built to close a network gap. We introduce technology companies to the OEM, DPSU and service stakeholders who shape requirements and programmes, represent clients at defence expos, and help build a long-term order pipeline rather than a single meeting. For foreign OEMs, that includes Make in India partnerships and offset obligations; for Indian firms, it is a path from first conversation to sustained presence.",
-    approach: [
+    slug: "next-generation-productivity",
+    title: "Next-Generation Productivity",
+    short:
+      "Trugro empowers defence manufacturers to engineer tech-enabled capabilities that drive operational efficiency, product robustness, and significant margin expansion. The firm works alongside engineering teams to optimize indigenous content (IC) compliance and align manufacturing workflows with strict military standards. By eliminating development redundancies and accelerating MIL-STD qualification, Trugro ensures that hardware platforms transition smoothly from initial prototypes to scalable serial production.",
+    tagline:
+      "Engineering design-to-cost, indigenous supply chains, and military-grade manufacturing lines to maximize operational margins.",
+    overview:
+      "Manufacturing for defence demands a zero-failure rate in extreme operating environments while meeting aggressive indigenisation and pricing expectations. Trugro Advisors partners with corporate manufacturers and dual-use firms to eliminate process waste, navigate MIL-STD qualification, and scale indigenous manufacturing lines to deliver consistent profitability without sacrificing battlefield reliability.",
+    context:
+      "Defence production cycles are susceptible to severe cost inflation and production bottlenecks caused by unoptimized global supply dependencies, failed environmental qualification tests, and high scrap rates during military hardening. Furthermore, strict indigenisation thresholds under Buy (Indian-IDDM) require companies to manufacture critical sub-components domestically, requiring an agile and resilient domestic Tier-2/Tier-3 supply ecosystem.",
+    work: [
       {
-        title: "OEM and DPSU partnerships",
-        text: "Identify and pursue the industrial relationships that carry a product into a platform or a programme.",
+        title: "Indigenous Content (IC) Engineering",
+        text: "We audit bills of materials (BoM) to eliminate restricted import dependencies, identify domestic alternatives, and achieve over 50%+ indigenous content compliance without performance trade-offs.",
       },
       {
-        title: "Defence expo representation",
-        text: "Put the company in front of the right visitors — and convert the booth into follow-up that survives the show.",
+        title: "Military Standard (MIL-STD) Qualification",
+        text: "We redesign commercial hardware to pass rigorous MIL-STD-810 (environmental, shock, vibration) and MIL-STD-461 (EMI/EMC) tests on the first iteration, drastically reducing rework costs.",
       },
       {
-        title: "Long-term order pipeline",
-        text: "Treat each engagement as the start of a multi-year relationship with the user, not a one-off pitch.",
+        title: "Design-to-Value & Manufacturing Flow",
+        text: "We implement lean manufacturing and value engineering across combat platform assemblies, composite fabrication, and precision electronic packaging to drive down unit costs.",
+      },
+      {
+        title: "Vendor Ecosystem Development",
+        text: "We qualify, audit, and integrate Tier-2 and Tier-3 domestic manufacturing suppliers to build redundant, high-yield supply chains that insulate clients from geopolitical disruption.",
       },
     ],
-    image: "/images/capability-people.jpg",
-    alt: "Quiet defence technology expo floor before opening",
+    impact: [
+      {
+        title: "Military-Grade Adaptation & Hardening",
+        text: "Identifying technical gaps between commercial hardware and military specifications, adapting platforms to clear rigorous military standards.",
+      },
+      {
+        title: "DGQA, DGAQA & EMI/EMC Testing",
+        text: "Guiding systems through environmental testing, EMI/EMC compliance, and formal quality certification audits.",
+      },
+      {
+        title: "Indigenous Content (IC) Compliance",
+        text: "Structuring manufacturing and component sourcing to satisfy mandated indigenous content norms.",
+      },
+    ],
+    image: "/images/capability-operations.jpg",
+    alt: "Armoured vehicle hull on an assembly line during sensor integration",
+  },
+  {
+    slug: "strategy-and-corporate-finance",
+    title: "Strategy & Corporate Finance",
+    short:
+      "Operating in an evolving $26B+ defence modernisation landscape, Trugro provides high-level corporate finance and strategic advisory to help enterprises scale profitably. The firm advises leadership on market entry roadmaps, capital allocation, working capital optimization across long procurement horizons, and securing non-dilutive innovation grants like iDEX, ADITI, and Make-II schemes.",
+    tagline:
+      "Structuring capital allocation, securing non-dilutive defence grants, and defining entry strategies across a $26B+ sovereign theatre.",
+    overview:
+      "India’s aerospace and defence sector is experiencing its largest modernisation expansion, driven by record indigenisation mandates and expanding export avenues. Seizing this opportunity requires a clear strategic compass and financial discipline. Trugro Advisors supports boards, investment funds, and corporate executives with the strategic advisory and corporate finance frameworks necessary to unlock enterprise value across this multi-decade investment cycle.",
+    context:
+      "Entering the defence ecosystem requires patience and calibrated balance-sheet management. Milestone disbursements are tied to technical acceptance and trial validations, creating working-capital strains for companies lacking sector-specific financial strategies. Navigating non-dilutive public grants, specialized defence funds, and bank guarantee mechanisms is essential to scale operations without equity destruction.",
+    work: [
+      {
+        title: "Defence Market Entry Roadmaps",
+        text: "We assess corporate portfolios to identify addressable dual-use expansion lanes, projecting capital expenditure, payback horizons, and expected return on capital employed (ROCE).",
+      },
+      {
+        title: "Non-Dilutive Capital & Grant Strategy",
+        text: "We lead non-dilutive capital capture through innovation mechanisms including iDEX, ADITI, Technology Development Fund (TDF), and Make-II funding schemes.",
+      },
+      {
+        title: "Working Capital & Milestone Structuring",
+        text: "We optimize contract cash flows, draft milestone payment architectures, and manage bank guarantee exposure across long procurement phases.",
+      },
+      {
+        title: "Fundraising & Sovereign Investment Advisory",
+        text: "We advise private equity, venture funds, and family offices on investment theses, defence-tech deal evaluation, and sovereign regulatory compliance.",
+      },
+    ],
+    impact: [
+      {
+        title: "iDEX & Innovation Grant Capture",
+        text: "Providing end-to-end support for iDEX and MAKE projects to capture non-dilutive government innovation awards and funding.",
+      },
+      {
+        title: "Defence Market Entry Roadmaps",
+        text: "Formulating tailored strategic roadmaps for mid-sized tech companies, large enterprises, and startups entering the $26B+ defence modernisation market.",
+      },
+    ],
+    image: "/images/insight-strategy.jpg",
+    alt: "Strategy sketches and programme papers on a consulting table",
+  },
+  {
+    slug: "talent-and-capability-building",
+    title: "Talent & Capability Building",
+    short:
+      "Recognizing that mission success depends on sector-specific knowledge, Trugro assists defence organizations in designing agile organizational structures, establishing mission-driven cultures, and attracting elite cross-domain talent. By integrating seasoned military veterans, technical experts, and compliance leaders into corporate teams, Trugro bridges the operational divide between corporate labs and frontline end-users.",
+    tagline:
+      "Embedding armed forces operational insight into corporate engineering teams to build a battle-ready institutional culture.",
+    overview:
+      "The gap between what corporate engineers build and what soldiers require on the front lines can only be bridged by human experience. Advanced technical capability without frontline operational doctrine results in products that fail field deployments. Trugro Advisors builds the organizational architecture, executive leadership, and operational culture required for companies to thrive in mission-critical defence programs.",
+    context:
+      "Defence engineering demands a unique institutional mindset: adherence to rigid quality protocols, zero tolerance for error, deep familiarity with military protocols, and the ability to interpret service doctrines. Most commercial technology firms lack this specialized DNA, creating communication barriers with military user groups and slowing program delivery.",
+    work: [
+      {
+        title: "Operational Doctrine & Field Alignment",
+        text: "We integrate veteran military operators directly into client engineering teams to align system ergonomics, user interfaces, and maintenance access with field realities.",
+      },
+      {
+        title: "Defence Executive & Specialist Sourcing",
+        text: "We identify, evaluate, and recruit strategic leadership—including veteran sales directors, quality assurance leads, and regulatory affairs specialists.",
+      },
+      {
+        title: "Security & Quality Culture Design",
+        text: "We establish organizational processes to enforce secure data handling, information compartmentalization, and defence-grade quality assurance culture.",
+      },
+      {
+        title: "Capability Workshops & Trial Readiness",
+        text: "We train commercial sales, product, and engineering teams on military terminology, trial conduct, protocol compliance, and formal interactions with armed forces boards.",
+      },
+    ],
+    impact: [
+      {
+        title: "Cross-Domain Leadership Integration",
+        text: "Integrating experienced retired armed forces officers (Indian Army veterans) and domain operators directly into client product-market strategies.",
+      },
+      {
+        title: "Trial & Operational Protocol Coaching",
+        text: "Coaching civilian engineering and leadership teams on armed forces evaluation expectations, user trial protocols, and operating formation feedback cycles.",
+      },
+    ],
+    image: "/images/careers.jpg",
+    alt: "Consultants walking through a contemporary office atrium",
+  },
+  {
+    slug: "transformation",
+    title: "Transformation",
+    heroTitle: "Enterprise Transformation",
+    short:
+      "Trugro drives holistic enterprise turnarounds, guiding dual-use technology firms, startups, and mid-sized enterprises through the comprehensive transformation into institutionalized defence contractors. Through targeted interventions across technology readiness levels (TRL), quality assurance certifications (DGQA/DGAQA), and field-trial preparations, Trugro changes performance trajectories.",
+    tagline:
+      "Guiding commercial technology and manufacturing firms through full-scale transformation into prime sovereign defence contractors.",
+    overview:
+      "Transitioning from a commercial business or early-stage startup into an institutional defence player requires more than winning a single project—it requires a complete enterprise transformation. Trugro Advisors provides end-to-end, multi-year transformation advisory, upgrading technical readiness, operational processes, and governance standards to build sustainable, scalable defence enterprises.",
+    context:
+      "Many innovative companies enter the defence sector through small pilot projects or innovation challenges but fail to scale into Tier-1 prime contractors. The barriers are structural: an inability to navigate production volume ramps, inadequate compliance with national security guidelines, and an absence of formal governance needed to manage multi-crore military delivery programs.",
+    work: [
+      {
+        title: "Full-Scale Operating Model Redesign",
+        text: "We re-architect corporate structures to separate commercial and defence verticals, ensuring strict regulatory compliance, dedicated facility controls, and optimal resource allocation.",
+      },
+      {
+        title: "TRL-to-MRL Advancement",
+        text: "We manage the systematic advancement of platforms through Technology Readiness Levels and Manufacturing Readiness Levels (MRL), bridging the gap between bench prototypes and serial production lines.",
+      },
+      {
+        title: "Statutory Compliance & Certification Turnaround",
+        text: "We overhaul organizational workflows to secure critical defence production licenses (DPL), facility security clearances, and DGQA/DGAQA green-channel qualifications.",
+      },
+      {
+        title: "Enterprise Risk Management & Program Governance",
+        text: "We implement project management systems capable of tracking complex deliverables across extended military development and procurement timelines.",
+      },
+    ],
+    impact: [
+      {
+        title: "Combat Platform Conceptualisation (ISR + Strike)",
+        text: "Partnered with a defence equipment manufacturer to conceptualise a combat platform integrating surveillance and strike capabilities, managing requirements definition, systems integration, and procurement positioning.",
+      },
+      {
+        title: "Full-Cycle Readiness Turnaround",
+        text: "Transitioning dual-use and commercial technology enterprises through a four-phase model—Discovery, Strategy, Execution, and Scale—from product-readiness auditing to successful procurement wins.",
+      },
+    ],
+    image: "/images/about.jpg",
+    alt: "Quiet contemporary interior for transformation work with leadership",
   },
 ];
 
-export const industries: Industry[] = [
+export const technologies: Technology[] = [
   {
     slug: "uav-cuas",
     title: "UAV / CUAS",
@@ -173,12 +435,12 @@ export const industries: Industry[] = [
     alt: "Reconnaissance UAV with an ISR camera gimbal on a quiet airfield",
   },
   {
-    slug: "micro-nano-satellite",
-    title: "Micro & Nano Satellite",
-    short: "Space-based ISR, comms payloads and constellation support.",
+    slug: "satellite",
+    title: "Satellite",
+    short: "Space-based ISR, communications payloads and constellation support.",
     summary:
-      "Small-satellite programmes for ISR, communications payloads and the constellation support the forces increasingly expect.",
-    body: "Space is no longer adjacent to defence — it is a theatre. Trugro helps micro and nano satellite teams position ISR and communications payloads for Indian requirements, navigate procurement categories, and build the industrial and user relationships that turn a constellation concept into a programme the services can use.",
+      "Satellite programmes for ISR, communications payloads and the constellation support the forces increasingly expect — spanning micro and nano classes.",
+    body: "Space is no longer adjacent to defence — it is a theatre. Trugro helps satellite teams position ISR and communications payloads for Indian requirements, navigate procurement categories, and build the industrial and user relationships that turn a constellation concept into a programme the services can use.",
     issues: [
       "Space-based ISR payloads",
       "Secure communications in orbit",
@@ -186,7 +448,27 @@ export const industries: Industry[] = [
       "Make in India and programme entry",
     ],
     image: "/images/industry-technology.jpg",
-    alt: "Micro satellite in a clean room during payload integration",
+    alt: "Satellite in a clean room during payload integration",
+    subsections: [
+      {
+        title: "Micro Satellite",
+        text: "Micro-class platforms carry the ISR and communications payloads that services can actually task. Trugro positions micro satellite teams against Indian requirements, procurement categories and the industrial partnerships that turn a bus into a programme.",
+        points: [
+          "Space-based ISR payloads",
+          "Make in India and programme entry",
+          "Ground segment and tasking logic",
+        ],
+      },
+      {
+        title: "Nano Satellite",
+        text: "Nano-class spacecraft and proliferated constellations change how the forces think about persistence and resilience in orbit. Trugro helps nano satellite teams productise secure communications, constellation support and the evaluation path that follows.",
+        points: [
+          "Secure communications in orbit",
+          "Constellation support and ground segment",
+          "Rapid demonstration to induction pathways",
+        ],
+      },
+    ],
   },
   {
     slug: "combat-platforms",
@@ -205,20 +487,36 @@ export const industries: Industry[] = [
     alt: "Armoured vehicle hull on an assembly line during sensor integration",
   },
   {
-    slug: "rcws-electro-optics",
-    title: "RCWS / Electro-Optics",
-    short: "Remote weapon stations, firepower and electro-optic suites.",
+    slug: "rcws",
+    title: "RCWS",
+    short: "Remote weapon stations and fire-control packages for platforms.",
     summary:
-      "Remote-controlled weapon stations, firepower packages and electro-optics for platforms that must see and engage at range.",
-    body: "Remote weapon stations and electro-optic suites sit at the intersection of sensors, fire control and platform integration. Trugro helps companies position RCWS and EO systems against service requirements, prepare for trials, and build the OEM relationships that place a suite onto a vehicle, vessel or static post.",
+      "Remote-controlled weapon stations and firepower packages for platforms that must engage at range.",
+    body: "Remote-controlled weapon stations sit at the intersection of sensors, fire control and platform integration. Trugro helps companies position RCWS systems against service requirements, prepare for trials, and build the OEM relationships that place a station onto a vehicle, vessel or static post.",
     issues: [
       "Remote-controlled weapon stations",
       "Fire control and engagement logic",
-      "Electro-optic sensing and targeting",
       "Platform integration with OEMs",
+      "Trials, certification and user evaluation",
     ],
     image: "/images/domain-rcws.jpg",
-    alt: "Electro-optic sight and thermal camera on a workshop test stand",
+    alt: "Remote weapon station optics on a workshop test stand",
+  },
+  {
+    slug: "electro-optics",
+    title: "Electro-Optics",
+    short: "Electro-optic sensing, targeting and fire-control suites.",
+    summary:
+      "Electro-optic suites for platforms that must see and designate at range — sensing, targeting and integration.",
+    body: "Electro-optic suites determine whether a platform can see, decide and designate under constraint. Trugro helps companies position EO and IR systems against Indian service requirements, prepare for environmental and user trials, and build the OEM relationships that place a suite onto a vehicle, vessel, UAV or static post.",
+    issues: [
+      "Electro-optic sensing and targeting",
+      "Thermal, day-sight and laser packages",
+      "Platform integration with OEMs",
+      "Environmental qualification and user trials",
+    ],
+    image: "/images/capability-technology.jpg",
+    alt: "Electro-optic sensor on a laboratory bench for military-spec product work",
   },
   {
     slug: "quantum",
@@ -329,39 +627,82 @@ export const insights: Insight[] = [
   },
 ];
 
-export const stats = [
+export const carousel = [
   {
-    value: 26,
-    prefix: "$",
-    suffix: "B+",
-    label: "Annual defence budget · 2024",
+    id: "capability",
+    label: "Capability",
+    kicker: "How we help clients",
+    title: "Capabilities that take products into the forces",
+    dek: "Aftermarket, digital, alliances, marketing, productivity, strategy, talent and transformation — each a dedicated practice.",
+    href: "/capabilities",
+    cta: "Explore capabilities",
+    image: "/images/hero-india-gate.jpg",
+    alt: "Kartavya Path looking toward India Gate at dusk",
   },
   {
-    value: 75,
-    prefix: "",
-    suffix: "%",
-    label: "Indigenisation target by 2030",
+    id: "partners",
+    label: "Partners",
+    kicker: "The firm",
+    title: "Partners who have sat in the rooms that decide",
+    dek: "Entrepreneurs, veterans and technocrats across strategy, technology, operations, finance and defence sales.",
+    href: "/partners",
+    cta: "Meet our partners",
+    image: "/images/careers.jpg",
+    alt: "Trugro partners in a contemporary atrium",
   },
   {
-    value: 500,
-    prefix: "",
-    suffix: "+",
-    label: "iDEX innovation awards issued",
+    id: "insight",
+    label: "Insight",
+    kicker: "Our insights",
+    title: "Defence engagements and what they teach",
+    dek: "Selected work on AI for CI/CT, combat platforms, secure LiFi and quantum data processing.",
+    href: "/insights",
+    cta: "Read insights",
+    image: "/images/insight-ai.jpg",
+    alt: "Intelligence fusion room with map screens",
   },
   {
-    value: 4,
-    prefix: "",
-    suffix: "×",
-    label: "Defence export growth · 5-yr",
+    id: "services",
+    label: "Services",
+    kicker: "What we do",
+    title: "From product readiness to procurement",
+    dek: "The operating sequence that takes a defence-ready product from TRL audit through certification, trials and contract award.",
+    href: "/what-we-do",
+    cta: "Explore services",
+    image: "/images/capability-risk.jpg",
+    alt: "Aerospace component under inspection in a certification laboratory",
+  },
+  {
+    id: "podcast",
+    label: "Podcast",
+    kicker: "Trugro Podcast",
+    title: "Conversations on building defence enterprises",
+    dek: "A forthcoming series with operators, founders and veterans. The first episodes are in production.",
+    href: "/podcast",
+    cta: "Coming soon",
+    image: "/images/perspective-dark.jpg",
+    alt: "Quiet editorial interior for recorded conversations",
+    soon: true,
+  },
+  {
+    id: "connect",
+    label: "Connect",
+    kicker: "Connect with us",
+    title: "Tell us about the product and the service you want to reach",
+    dek: "Write to the partners who will stay through trials, evaluation and the order pipeline.",
+    href: "/contact",
+    cta: "Connect with us",
+    image: "/images/contact.jpg",
+    alt: "Empty conference room overlooking the city at dusk",
   },
 ];
 
 export const offices = [
-  { city: "Gurugram", line: "National Capital Region" },
-  { city: "Bhopal", line: "Central India" },
-  { city: "Pune", line: "West" },
-  { city: "Mumbai", line: "West" },
-  { city: "Hyderabad", line: "South" },
+  { city: "Gurugram", line: "National Capital Region", lat: 28.46, lon: 77.03 },
+  { city: "Bhopal", line: "Central India", lat: 23.26, lon: 77.41 },
+  { city: "Pune", line: "West", lat: 18.52, lon: 73.86 },
+  { city: "Mumbai", line: "West", lat: 19.08, lon: 72.88 },
+  { city: "Hyderabad", line: "South", lat: 17.39, lon: 78.49 },
 ];
 
 export const roles = [
@@ -369,7 +710,7 @@ export const roles = [
     id: "consultant-defence-strategy",
     title: "Consultant, Defence Strategy",
     location: "Gurugram",
-    practice: "Strategic Advisory",
+    practice: "Strategy & Corporate Finance",
     summary:
       "Help technology companies and industrial groups build defence market-entry roadmaps — product fit, policy and the path to the user.",
   },
@@ -377,7 +718,7 @@ export const roles = [
     id: "specialist-product-procurement",
     title: "Specialist, Product & Procurement",
     location: "Pune / Hyderabad",
-    practice: "Procurement Strategy",
+    practice: "Marketing & Sales",
     summary:
       "Guide GSQR mapping, trial preparation, and RFP, iDEX and MAKE navigation. Comfort with both the product and the paper.",
   },
@@ -385,7 +726,7 @@ export const roles = [
     id: "advisor-tech-ai",
     title: "Advisor, Tech & AI",
     location: "Gurugram / Hyderabad",
-    practice: "Product Positioning",
+    practice: "Digital & Analytics",
     summary:
       "Work with deep-tech teams — AI, autonomy, sensing, quantum — to productise for military environments and named missions.",
   },
@@ -393,7 +734,7 @@ export const roles = [
     id: "associate-business-development",
     title: "Associate, Business Development",
     location: "Mumbai / Gurugram",
-    practice: "Business Development",
+    practice: "M&A & Strategic Alliances",
     summary:
       "Build OEM, DPSU and service relationships. Represent clients at expos and keep a long-term order pipeline moving.",
   },
@@ -476,50 +817,41 @@ export const leaders: Leader[] = [
 
 export const differentiators = [
   {
-    number: "01",
     title: "Entrepreneurial DNA",
     text: "Founded by serial entrepreneurs who understand the journey from startup to scale — and the difference between a product and a company the forces can buy from.",
   },
   {
-    number: "02",
     title: "Deep defence experience",
     text: "Extensive experience working with the armed forces, DPSUs and defence OEMs. We know how requirements are written, how trials run, and who actually decides.",
   },
   {
-    number: "03",
     title: "End-to-end support",
     text: "From product-market fit to a procurement win, we stay through the entire cycle. Advisory that ends at the slide is not the work.",
   },
   {
-    number: "04",
     title: "Technology-first approach",
     text: "We understand deep-tech — AI/ML, quantum, UAVs and UUVs, combat platforms, weapon systems and electro-optics — well enough to position it, not merely describe it.",
   },
   {
-    number: "05",
     title: "Proven frameworks",
-    text: "Battle-tested methodologies for market entry, compliance and partnerships, sequenced from product readiness through contract award.",
+    text: "Battle-tested methodologies for market entry, compliance and partnerships, sequenced from Product Readiness through contract award.",
   },
 ];
 
 export const engagementPhases = [
   {
-    number: "01",
     title: "Discovery",
     text: "Assess product portfolio, technology readiness and defence market fit.",
   },
   {
-    number: "02",
     title: "Strategy",
     text: "Build a tailored roadmap for defence sector entry or expansion.",
   },
   {
-    number: "03",
     title: "Execution",
     text: "Product refinement, partnership building and procurement positioning.",
   },
   {
-    number: "04",
     title: "Scale",
     text: "Ongoing support through trials, orders and long-term defence relationships.",
   },
@@ -528,66 +860,67 @@ export const engagementPhases = [
 export const clientTypes = [
   {
     title: "Mid-size tech companies",
+    mark: "MT",
     text: "Companies with proven products looking to diversify into defence as a new revenue stream.",
   },
   {
     title: "Large enterprises",
+    mark: "LE",
     text: "Corporates seeking strategic expansion into India’s defence manufacturing ecosystem.",
   },
   {
     title: "Defence startups",
+    mark: "DS",
     text: "Innovative startups with cutting-edge technology needing guidance on sector navigation.",
   },
   {
     title: "Foreign OEMs",
+    mark: "FO",
     text: "International companies looking for Make in India partnerships and offset obligations.",
   },
 ];
 
 export const procurementSteps = [
   {
-    number: "01",
-    title: "Product readiness",
+    title: "Product Readiness",
     text: "Audit existing product, IP and TRL. Identify defence applicability and gaps versus military-grade specifications.",
   },
   {
-    number: "02",
-    title: "Strategic positioning",
+    title: "Strategic Positioning",
     text: "Map the product to GSQRs and service requirements. Define the value proposition for Army, Navy, Air Force or MHA.",
   },
   {
-    number: "03",
-    title: "Compliance & certification",
+    title: "Compliance & Certification",
     text: "Guide DGQA / DGAQA processes, environmental and EMI/EMC testing, and indigenous content norms.",
   },
   {
-    number: "04",
-    title: "User trials & field evaluation",
+    title: "User Trials & Field Evaluation",
     text: "Prepare for unit-level user trials, performance demonstrations and feedback cycles with operating formations.",
   },
   {
-    number: "05",
-    title: "Technical evaluation",
+    title: "Technical Evaluation",
     text: "Support TEC, staff evaluation, GSE and price negotiation committee interactions and evaluation queries.",
   },
   {
-    number: "06",
-    title: "Procurement & scale",
+    title: "Procurement & Scale",
     text: "Navigate RFP/RFI, iDEX, MAKE-I/II and Buy Indian–IDDM categories. Drive contract award and the order pipeline.",
   },
 ];
 
 export const nav = {
-  primary: [
-    { label: "What We Do", href: "/what-we-do", mega: "capabilities" as const },
-    { label: "Domains", href: "/domains", mega: "industries" as const },
-    { label: "Insights", href: "/insights" },
-    { label: "About", href: "/about" },
+  menu: [
+    { label: "Capabilities", href: "/capabilities", children: "capabilities" as const },
+    { label: "What We Do", href: "/what-we-do" },
+    { label: "Technology", href: "/technology", children: "technologies" as const },
+    { label: "Our Insights", href: "/insights" },
     { label: "Careers", href: "/careers" },
+    { label: "About Us", href: "/about" },
+    { label: "Trugro Blog", href: "/blog", soon: true },
+    { label: "Trugro Podcast", href: "/podcast", soon: true },
   ],
   footer: [
     { label: "What We Do", href: "/what-we-do" },
-    { label: "Domains", href: "/domains" },
+    { label: "Technology", href: "/technology" },
     { label: "Insights", href: "/insights" },
     { label: "About Trugro", href: "/about" },
     { label: "Careers", href: "/careers" },
@@ -612,9 +945,9 @@ export const faqs = [
       "We sequence the work: product and TRL audit, GSQR and service positioning, DGQA/DGAQA and EMI/EMC certification, user trials, TEC/GSE/PNC support, then RFP, iDEX, MAKE or Buy Indian–IDDM routes to contract.",
   },
   {
-    question: "Which technology domains does Trugro cover?",
+    question: "Which technologies does Trugro cover?",
     answer:
-      "UAV and counter-UAS, micro and nano satellites, combat platforms, remote weapon stations and electro-optics, quantum (QRNG, cryptography, sensing) and directed energy weapons — plus ISR, strike, secure communications, autonomy and armament.",
+      "UAV and counter-UAS, satellite (micro and nano), combat platforms, remote weapon stations, electro-optics, quantum (QRNG, cryptography, sensing) and directed energy weapons — plus ISR, strike, secure communications, autonomy and armament.",
   },
   {
     question: "Who should work with a defence strategy consultant?",
@@ -643,26 +976,27 @@ export function searchContent(query: string) {
   for (const item of capabilities) {
     if (
       item.title.toLowerCase().includes(q) ||
-      item.summary.toLowerCase().includes(q)
+      item.short.toLowerCase().includes(q) ||
+      item.tagline.toLowerCase().includes(q)
     ) {
       results.push({
         type: "Capability",
         title: item.title,
-        href: `/what-we-do/${item.slug}`,
+        href: `/capabilities/${item.slug}`,
         text: item.short,
       });
     }
   }
 
-  for (const item of industries) {
+  for (const item of technologies) {
     if (
       item.title.toLowerCase().includes(q) ||
       item.summary.toLowerCase().includes(q)
     ) {
       results.push({
-        type: "Domain",
+        type: "Technology",
         title: item.title,
-        href: `/domains/${item.slug}`,
+        href: `/technology/${item.slug}`,
         text: item.short,
       });
     }
@@ -683,6 +1017,20 @@ export function searchContent(query: string) {
     }
   }
 
+  for (const person of leaders) {
+    if (
+      person.name.toLowerCase().includes(q) ||
+      person.role.toLowerCase().includes(q)
+    ) {
+      results.push({
+        type: "Partner",
+        title: person.name,
+        href: "/partners",
+        text: person.role,
+      });
+    }
+  }
+
   return results.slice(0, 8);
 }
 
@@ -690,8 +1038,8 @@ export function getCapability(slug: string) {
   return capabilities.find((item) => item.slug === slug);
 }
 
-export function getIndustry(slug: string) {
-  return industries.find((item) => item.slug === slug);
+export function getTechnology(slug: string) {
+  return technologies.find((item) => item.slug === slug);
 }
 
 export function getInsight(slug: string) {

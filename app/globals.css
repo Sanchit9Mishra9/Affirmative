@@ -113,6 +113,12 @@
     font-feature-settings: "ss01" on, "kern" on;
   }
 
+  html:has([data-home-lock]),
+  body:has([data-home-lock]) {
+    height: 100%;
+    overflow: hidden;
+  }
+
   ::selection {
     background: #b9f227;
     color: #012160;

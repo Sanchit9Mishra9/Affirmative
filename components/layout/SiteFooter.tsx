@@ -2,13 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Logo } from "@/components/brand/Logo";
 import { Container } from "@/components/shared/Layout";
 import { CookiePreferences } from "@/components/layout/CookiePreferences";
 import { firm, nav } from "@/lib/content";
 
 export function SiteFooter() {
+  const pathname = usePathname();
   const [cookiesOpen, setCookiesOpen] = useState(false);
+
+  if (pathname === "/") return null;
 
   return (
     <footer className="border-t border-white/10 bg-graphite text-paper">
@@ -17,8 +21,11 @@ export function SiteFooter() {
           <div className="md:col-span-4">
             <Logo inverted />
             <p className="mt-6 max-w-xs text-sm leading-relaxed text-paper/65">
-              {firm.tagline}. Defence strategy consulting for enterprises
-              entering India’s defence ecosystem.
+              {firm.tagline}
+            </p>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-paper/65">
+              Defence strategy consulting for enterprises entering India’s
+              defence ecosystem.
             </p>
           </div>
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-8">

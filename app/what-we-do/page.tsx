@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container, Eyebrow, Section } from "@/components/shared/Layout";
-import { ClosingCta } from "@/components/shared/ClosingCta";
+import { ConnectBlock } from "@/components/shared/ConnectBlock";
 import { EditorialImage } from "@/components/shared/EditorialImage";
+import { GreenRule } from "@/components/shared/GreenRule";
 import { Reveal } from "@/components/shared/Reveal";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { howToJsonLd, pageMetadata } from "@/lib/seo";
 import { capabilities, procurementSteps } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   title: "Defence Consulting Services in India",
   description:
-    "Strategic advisory, GSQR product positioning, defence procurement (iDEX, MAKE, RFP) and OEM–DPSU business development from Trugro Advisors LLP.",
+    "Trugro’s operating sequence for defence market entry: Product Readiness, Strategic Positioning, Compliance & Certification, User Trials, Technical Evaluation, and Procurement & Scale.",
   path: "/what-we-do",
   keywords: [
     "defence consulting services",
@@ -26,7 +28,7 @@ export default function WhatWeDoPage() {
     <>
       <JsonLd
         data={howToJsonLd(
-          "From product readiness to defence procurement in India",
+          "From Product Readiness to defence procurement in India",
           "Trugro’s operational sequence for taking a product from TRL audit through certification, trials and contract award.",
           procurementSteps
         )}
@@ -42,53 +44,22 @@ export default function WhatWeDoPage() {
             Defence consulting from market entry to procurement.
           </h1>
           <p className="mt-8 max-w-xl text-lg text-paper/75">
-            Four missions. One operating idea: take a defence-ready product from
-            market fit through procurement, and stay for the order pipeline.
+            An operating sequence: take a defence-ready product from market fit
+            through procurement, and stay for the order pipeline.
           </p>
         </Container>
       </section>
       <Section>
         <Container>
-          <div className="space-y-0">
-            {capabilities.map((item, index) => (
-              <Reveal key={item.slug} delay={index * 0.04}>
-                <Link
-                  href={`/what-we-do/${item.slug}`}
-                  className="group grid gap-8 border-t border-line py-12 lg:grid-cols-12 lg:py-16"
-                >
-                  <div className="lg:col-span-5">
-                    <p className="text-xs text-stone">{item.number}</p>
-                    <h2 className="editorial mt-3 text-3xl text-graphite md:text-4xl">
-                      {item.title}
-                    </h2>
-                    <p className="mt-4 max-w-md text-stone">{item.summary}</p>
-                    <p className="mt-6 text-sm tracking-wide text-graphite">
-                      <span className="link-underline">Explore this capability</span>
-                    </p>
-                  </div>
-                  <EditorialImage
-                    src={item.image}
-                    alt={item.alt}
-                    className="aspect-[16/9] lg:col-span-7"
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                  />
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </Section>
-      <section className="border-t border-line bg-paper py-24 md:py-32">
-        <Container>
           <Eyebrow>Operational sequence</Eyebrow>
           <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">
-            From product readiness to procurement.
+            From Product Readiness to Procurement.
           </h2>
           <ol className="mt-16 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
             {procurementSteps.map((step) => (
-              <li key={step.number} className="border-t border-line pt-8">
-                <p className="text-xs text-stone">{step.number}</p>
-                <h3 className="mt-3 text-xl text-graphite">{step.title}</h3>
+              <li key={step.title} className="border-t border-line pt-8">
+                <GreenRule className="mb-5 w-8" />
+                <h3 className="text-xl text-graphite">{step.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-stone">
                   {step.text}
                 </p>
@@ -96,8 +67,59 @@ export default function WhatWeDoPage() {
             ))}
           </ol>
         </Container>
+      </Section>
+      <section className="border-t border-line bg-paper py-24 md:py-32">
+        <Container>
+          <Eyebrow>Capabilities</Eyebrow>
+          <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">
+            Pointers that open a dedicated page.
+          </h2>
+          <div className="mt-16 space-y-0">
+            {capabilities.map((item, index) => {
+              const imageFirst = index % 2 === 0;
+              return (
+                <Reveal key={item.slug} delay={index * 0.03}>
+                  <Link
+                    href={`/capabilities/${item.slug}`}
+                    className="group grid items-center gap-8 border-t border-line py-12 lg:grid-cols-12 lg:py-16"
+                  >
+                    <EditorialImage
+                      src={item.image}
+                      alt={item.alt}
+                      className={cn(
+                        "aspect-[16/9] lg:col-span-6",
+                        imageFirst
+                          ? "lg:col-start-1"
+                          : "lg:col-start-7 lg:row-start-1"
+                      )}
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                    />
+                    <div
+                      className={cn(
+                        "lg:col-span-5",
+                        imageFirst
+                          ? "lg:col-start-8"
+                          : "lg:col-start-1 lg:row-start-1"
+                      )}
+                    >
+                      <h3 className="editorial text-3xl text-graphite md:text-4xl">
+                        {item.title}
+                      </h3>
+                      <p className="mt-4 max-w-md text-stone">{item.short}</p>
+                      <p className="mt-6 text-sm tracking-wide text-graphite">
+                        <span className="link-underline">
+                          Explore this capability
+                        </span>
+                      </p>
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
+          </div>
+        </Container>
       </section>
-      <ClosingCta />
+      <ConnectBlock />
     </>
   );
 }

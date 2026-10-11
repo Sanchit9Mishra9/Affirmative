@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container, Eyebrow } from "@/components/shared/Layout";
 import { ArrowLink } from "@/components/shared/ArrowLink";
-import { ClosingCta } from "@/components/shared/ClosingCta";
+import { ConnectBlock } from "@/components/shared/ConnectBlock";
 import { EditorialImage } from "@/components/shared/EditorialImage";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -105,7 +105,7 @@ export default async function InsightPage({ params }: Props) {
           </div>
         </Container>
       </article>
-      <ClosingCta />
+      <ConnectBlock />
     </>
   );
 }

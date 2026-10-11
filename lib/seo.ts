@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import {
   capabilities,
   firm,
-  industries,
   insights,
   leaders,
   offices,
+  technologies,
 } from "@/lib/content";
 
 export const SITE_URL = "https://trugro.in";
@@ -143,7 +143,10 @@ export function organizationJsonLd() {
           "MAKE projects",
           "Buy Indian IDDM",
           "UAV and CUAS",
+          "Satellite",
           "Combat platforms",
+          "RCWS",
+          "Electro-optics",
           "Quantum sensing",
           "Directed energy weapons",
         ],
@@ -182,8 +185,8 @@ export function organizationJsonLd() {
           itemOffered: {
             "@type": "Service",
             name: item.title,
-            description: item.summary,
-            url: absoluteUrl(`/what-we-do/${item.slug}`),
+            description: item.short,
+            url: absoluteUrl(`/capabilities/${item.slug}`),
           },
         })),
       },
@@ -234,15 +237,15 @@ export function faqJsonLd(faqs: { question: string; answer: string }[]) {
 
 export function serviceJsonLd(item: {
   title: string;
-  summary: string;
+  short: string;
   slug: string;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     name: item.title,
-    description: item.summary,
-    url: absoluteUrl(`/what-we-do/${item.slug}`),
+    description: item.short,
+    url: absoluteUrl(`/capabilities/${item.slug}`),
     serviceType: "Defence strategy consulting",
     provider: { "@id": absoluteUrl("/#organization") },
     areaServed: { "@type": "Country", name: "India" },
@@ -312,8 +315,10 @@ export function sitemapEntries() {
   }[] =
     [
       { path: "/", changeFrequency: "weekly", priority: 1 },
+      { path: "/capabilities", changeFrequency: "monthly", priority: 0.9 },
       { path: "/what-we-do", changeFrequency: "monthly", priority: 0.9 },
-      { path: "/domains", changeFrequency: "monthly", priority: 0.9 },
+      { path: "/technology", changeFrequency: "monthly", priority: 0.9 },
+      { path: "/partners", changeFrequency: "monthly", priority: 0.8 },
       { path: "/insights", changeFrequency: "weekly", priority: 0.8 },
       { path: "/about", changeFrequency: "monthly", priority: 0.8 },
       { path: "/careers", changeFrequency: "monthly", priority: 0.6 },
@@ -331,13 +336,13 @@ export function sitemapEntries() {
       priority: route.priority,
     })),
     ...capabilities.map((item) => ({
-      url: absoluteUrl(`/what-we-do/${item.slug}`),
+      url: absoluteUrl(`/capabilities/${item.slug}`),
       lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),
-    ...industries.map((item) => ({
-      url: absoluteUrl(`/domains/${item.slug}`),
+    ...technologies.map((item) => ({
+      url: absoluteUrl(`/technology/${item.slug}`),
       lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.8,
@@ -355,42 +360,57 @@ export const capabilitySeo: Record<
   string,
   { title: string; description: string; keywords: string[] }
 > = {
-  "strategic-advisory": {
-    title: "Defence Market Entry Consulting in India",
+  "aftermarket-and-services": {
+    title: "Defence Aftermarket & Services Consulting",
     description:
-      "Defence market-entry roadmaps, technology readiness and policy guidance for companies entering India’s armed forces, DPSU and OEM ecosystem.",
+      "Unlock recurring value across armed forces platforms through fleet sustainment, performance logistics, AMC/CMC and life-cycle economics.",
     keywords: [
-      "defence market entry India",
-      "defence strategy consulting",
-      "defence policy advisory",
+      "defence aftermarket India",
+      "performance based logistics",
+      "AMC CMC defence",
     ],
   },
-  "product-positioning": {
-    title: "GSQR Mapping & Defence Product Positioning",
+  "digital-and-analytics": {
+    title: "Defence Digital & Analytics Consulting",
     description:
-      "Map products to GSQRs, prepare for user trials and adapt commercial systems to military specifications for Indian defence procurement.",
-    keywords: ["GSQR mapping", "defence product positioning", "military specifications"],
+      "Mission-grade digital architectures, battlefield AI, quantum communications and MIL-STD software for the Indian Armed Forces.",
+    keywords: ["defence AI India", "mission analytics", "quantum communications defence"],
   },
-  "procurement-strategy": {
-    title: "Defence Procurement, iDEX & MAKE Consulting",
+  "ma-and-strategic-alliances": {
+    title: "Defence M&A & Strategic Alliances",
     description:
-      "Navigate RFP and RFI processes, iDEX and MAKE routes, DGQA/DGAQA certification and evaluation committees for Indian defence contracts.",
-    keywords: [
-      "defence procurement consulting",
-      "iDEX consulting",
-      "MAKE project support",
-      "DGQA DGAQA",
-    ],
+      "JV structuring, technology transfers, offset execution and post-merger integration for India’s aerospace and defence industrial base.",
+    keywords: ["defence M&A India", "Make in India joint venture", "offset advisory"],
   },
-  "business-development": {
-    title: "Defence OEM, DPSU & Partnership Development",
+  "marketing-and-sales": {
+    title: "Defence Marketing & Sales Consulting",
     description:
-      "Open MoD, DPSU and OEM relationships, represent at defence expos, and build a long-term order pipeline including Make in India and offsets.",
-    keywords: [
-      "defence business development",
-      "DPSU partnerships",
-      "Make in India defence",
-    ],
+      "GSQR mapping, RFI/RFP navigation, expo strategy and PNC support to convert defence technology into multi-year contract awards.",
+    keywords: ["GSQR mapping", "defence sales India", "RFP RFI consulting"],
+  },
+  "next-generation-productivity": {
+    title: "Defence Manufacturing Productivity Consulting",
+    description:
+      "Indigenous content engineering, MIL-STD qualification and design-to-cost manufacturing for Indian defence production.",
+    keywords: ["MIL-STD qualification", "indigenous content defence", "defence manufacturing"],
+  },
+  "strategy-and-corporate-finance": {
+    title: "Defence Strategy & Corporate Finance",
+    description:
+      "Market-entry roadmaps, iDEX ADITI and Make-II grants, working capital and fundraising for India’s $26B+ defence modernisation.",
+    keywords: ["iDEX consulting", "defence corporate finance", "defence market entry India"],
+  },
+  "talent-and-capability-building": {
+    title: "Defence Talent & Capability Building",
+    description:
+      "Embed armed forces operational insight into corporate teams — veteran integration, specialist sourcing and trial readiness.",
+    keywords: ["defence talent India", "veteran integration", "trial readiness coaching"],
+  },
+  transformation: {
+    title: "Enterprise Transformation",
+    description:
+      "Guide commercial technology and manufacturing firms through full-scale transformation into sovereign defence contractors.",
+    keywords: ["defence transformation", "TRL MRL advancement", "defence production licence"],
   },
 };
 
@@ -404,11 +424,15 @@ export const domainSeo: Record<
       "Advisory for drone, counter-drone, surveillance, strike and swarm programmes entering Indian service procurement.",
     keywords: ["UAV consulting India", "CUAS", "counter drone defence"],
   },
-  "micro-nano-satellite": {
-    title: "Micro & Nano Satellite Defence Consulting",
+  satellite: {
+    title: "Satellite Defence Consulting",
     description:
-      "Position small-satellite ISR and communications payloads for Indian defence programmes, procurement categories and Make in India.",
-    keywords: ["defence satellite consulting", "space ISR India", "nano satellite defence"],
+      "Position micro and nano satellite ISR and communications payloads for Indian defence programmes, procurement categories and Make in India.",
+    keywords: [
+      "defence satellite consulting",
+      "micro satellite defence",
+      "nano satellite defence",
+    ],
   },
   "combat-platforms": {
     title: "Combat Platform Defence Consulting",
@@ -416,11 +440,17 @@ export const domainSeo: Record<
       "Requirements, subsystem integration and procurement strategy for armoured and strike vehicles in India’s defence manufacturing ecosystem.",
     keywords: ["combat platform consulting", "armoured vehicle procurement India"],
   },
-  "rcws-electro-optics": {
-    title: "RCWS & Electro-Optics Defence Consulting",
+  rcws: {
+    title: "RCWS Defence Consulting",
     description:
-      "Position remote weapon stations and electro-optic suites against Indian service requirements, trials and OEM integration.",
-    keywords: ["RCWS consulting", "electro optics defence India"],
+      "Position remote-controlled weapon stations against Indian service requirements, trials and OEM platform integration.",
+    keywords: ["RCWS consulting", "remote weapon station India"],
+  },
+  "electro-optics": {
+    title: "Electro-Optics Defence Consulting",
+    description:
+      "Position electro-optic sensing and targeting suites against Indian service requirements, environmental trials and OEM integration.",
+    keywords: ["electro optics defence India", "EO IR consulting"],
   },
   quantum: {
     title: "Quantum Computing for Defence",

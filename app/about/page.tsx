@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { Container, Eyebrow, Section } from "@/components/shared/Layout";
-import { ClosingCta } from "@/components/shared/ClosingCta";
+import { ConnectBlock } from "@/components/shared/ConnectBlock";
 import { EditorialImage } from "@/components/shared/EditorialImage";
+import { GreenRule } from "@/components/shared/GreenRule";
+import { ClientMarks } from "@/components/about/ClientMarks";
+import { IndiaMap } from "@/components/about/IndiaMap";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { pageMetadata } from "@/lib/seo";
-import {
-  clientTypes,
-  differentiators,
-  engagementPhases,
-  leaders,
-  offices,
-} from "@/lib/content";
+import { differentiators, engagementPhases, offices } from "@/lib/content";
 
 export const metadata: Metadata = pageMetadata({
   title: "About Trugro Advisors",
@@ -55,15 +52,15 @@ export default function AboutPage() {
         <Container>
           <div className="grid gap-16 lg:grid-cols-12">
             <div className="lg:col-span-5">
-              <h2 className="font-display text-4xl text-graphite md:text-5xl">
+              <GreenRule />
+              <h2 className="font-display mt-6 text-4xl text-graphite md:text-5xl">
                 Why clients choose Trugro
               </h2>
             </div>
             <div className="lg:col-span-7">
               {differentiators.map((item) => (
                 <article key={item.title} className="border-t border-line py-8">
-                  <p className="text-xs text-stone">{item.number}</p>
-                  <h3 className="mt-2 text-xl text-graphite">{item.title}</h3>
+                  <h3 className="text-xl text-graphite">{item.title}</h3>
                   <p className="mt-3 max-w-xl text-stone">{item.text}</p>
                 </article>
               ))}
@@ -75,15 +72,13 @@ export default function AboutPage() {
         <Container>
           <Eyebrow>How we work</Eyebrow>
           <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">
-            A four-phase engagement, from discovery to scale.
+            A four-phase engagement, from Discovery to Scale.
           </h2>
           <div className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {engagementPhases.map((phase) => (
-              <article key={phase.number} className="border-t border-line pt-8">
-                <p className="text-xs text-stone">Phase {phase.number}</p>
-                <h3 className="editorial mt-3 text-2xl text-graphite">
-                  {phase.title}
-                </h3>
+              <article key={phase.title} className="border-t border-line pt-8">
+                <GreenRule className="mb-5 w-8" />
+                <h3 className="editorial text-2xl text-graphite">{phase.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-stone">
                   {phase.text}
                 </p>
@@ -94,61 +89,42 @@ export default function AboutPage() {
       </section>
       <section className="border-t border-line py-24 md:py-32">
         <Container>
-          <Eyebrow>Who we serve</Eyebrow>
+          <Eyebrow>Clients we work with</Eyebrow>
           <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">
             The companies we take into the ecosystem.
           </h2>
-          <div className="mt-16 grid gap-10 md:grid-cols-2">
-            {clientTypes.map((item) => (
-              <article key={item.title} className="border-t border-line pt-8">
-                <h3 className="text-xl text-graphite">{item.title}</h3>
-                <p className="mt-3 max-w-md text-stone">{item.text}</p>
-              </article>
-            ))}
+          <div className="mt-16">
+            <ClientMarks />
           </div>
         </Container>
       </section>
       <section className="border-t border-line bg-paper py-24 md:py-32">
         <Container>
-          <Eyebrow>Leadership</Eyebrow>
-          <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">
-            Cross-domain operators across defence, technology, finance and the
-            field.
-          </h2>
-          <div className="mt-16 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {leaders.map((person) => (
-              <article key={person.name} className="border-t border-line pt-6">
-                <p className="text-[0.6875rem] tracking-[0.2em] uppercase text-stone">
-                  {person.initials}
-                </p>
-                <h3 className="mt-3 text-xl text-graphite">{person.name}</h3>
-                <p className="mt-1 text-sm text-stone">{person.role}</p>
-                {person.credential ? (
-                  <p className="mt-1 text-xs tracking-wide text-stone/80">
-                    {person.credential}
-                  </p>
-                ) : null}
-              </article>
-            ))}
+          <div className="grid items-start gap-12 lg:grid-cols-12">
+            <div className="lg:col-span-5">
+              <Eyebrow>Presence in India</Eyebrow>
+              <h2 className="font-display mt-4 text-4xl text-graphite md:text-5xl">
+                Offices across the country.
+              </h2>
+              <ul className="mt-10">
+                {offices.map((office) => (
+                  <li
+                    key={office.city}
+                    className="flex items-baseline justify-between border-t border-line py-4"
+                  >
+                    <span className="text-lg text-graphite">{office.city}</span>
+                    <span className="text-sm text-stone">{office.line}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="lg:col-span-7">
+              <IndiaMap />
+            </div>
           </div>
         </Container>
       </section>
-      <section className="border-t border-line py-24">
-        <Container>
-          <p className="text-[0.6875rem] tracking-[0.2em] uppercase text-stone">
-            Offices
-          </p>
-          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-            {offices.map((office) => (
-              <li key={office.city} className="border-t border-line pt-5">
-                <p className="text-lg text-graphite">{office.city}</p>
-                <p className="mt-1 text-sm text-stone">{office.line}</p>
-              </li>
-            ))}
-          </ul>
-        </Container>
-      </section>
-      <ClosingCta />
+      <ConnectBlock />
     </>
   );
 }

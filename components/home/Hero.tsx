@@ -32,7 +32,7 @@ export function Hero() {
           </p>
           <h1 className="font-display mt-6 text-[3.25rem] text-paper sm:text-6xl md:text-7xl lg:text-[5.25rem]">
             Building defence
-            <br className="hidden sm:block" /> enterprises today.
+            <br className="hidden sm:block" /> enterprise today
           </h1>
           <p className="mt-8 max-w-xl text-base leading-relaxed text-paper/80 md:text-lg">
             Trugro consults enterprises into India’s defence ecosystem — from

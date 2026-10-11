@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Container, Eyebrow, Section } from "@/components/shared/Layout";
 import { ArrowLink } from "@/components/shared/ArrowLink";
-import { ClosingCta } from "@/components/shared/ClosingCta";
+import { ConnectBlock } from "@/components/shared/ConnectBlock";
 import { EditorialImage } from "@/components/shared/EditorialImage";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
 import { pageMetadata } from "@/lib/seo";
@@ -76,7 +76,7 @@ export default function CareersPage() {
           </div>
         </Container>
       </Section>
-      <ClosingCta headline="If this is the work you want, start a conversation." />
+      <ConnectBlock topic="joining Trugro" />
     </>
   );
 }

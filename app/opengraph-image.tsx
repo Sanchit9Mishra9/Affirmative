@@ -48,7 +48,7 @@ export default function OpenGraphImage() {
             maxWidth: 720,
           }}
         >
-          Building Defence Enterprises Today
+          Building defence enterprise today
         </div>
       </div>
     ),

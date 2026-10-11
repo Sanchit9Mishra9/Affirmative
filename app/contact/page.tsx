@@ -3,8 +3,9 @@ import { Container, Eyebrow, Section } from "@/components/shared/Layout";
 import { EditorialImage } from "@/components/shared/EditorialImage";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Breadcrumbs } from "@/components/seo/Breadcrumbs";
-import { pageMetadata } from "@/lib/seo";
-import { firm, offices } from "@/lib/content";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqJsonLd, pageMetadata } from "@/lib/seo";
+import { faqs, firm, offices } from "@/lib/content";
 
 export const metadata: Metadata = pageMetadata({
   title: "Contact Defence Consultants in India",
@@ -23,12 +24,13 @@ export const metadata: Metadata = pageMetadata({
 export default function ContactPage() {
   return (
     <>
+      <JsonLd data={faqJsonLd(faqs)} />
       <section className="bg-paper pt-32 pb-12 md:pt-40">
         <Container>
           <Breadcrumbs items={[{ name: "Contact", href: "/contact" }]} />
-          <Eyebrow>Contact</Eyebrow>
+          <Eyebrow>Connect with us</Eyebrow>
           <h1 className="font-display mt-5 max-w-4xl text-5xl text-graphite md:text-6xl lg:text-7xl">
-            Let’s build India’s defence together.
+            Connect with us.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-stone">
             Tell us about the product, the company, and the service you want to
