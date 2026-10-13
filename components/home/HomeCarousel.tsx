@@ -1,145 +1,167 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ArrowLink } from "@/components/shared/ArrowLink";
-import { Container } from "@/components/shared/Layout";
 import { ValueLine } from "@/components/shared/GreenRule";
-import { carousel } from "@/lib/content";
+import { capabilities, capabilityExcerpt, carousel } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
 const HERO_BLUR =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAHAAbAAD//gAQTGF2YzYwLjMxLjEwMgD/2wBDAAgYGBwYHCEhISEhISckJygoKCcnJycoKCgrKyszMzMrKysoKCsrMDAzMzc5NzQ0MzQ5OTw8PEhIRUVUVFdnZ3z/xABhAAEAAwEBAAAAAAAAAAAAAAAGAAIFAwcBAQEBAAAAAAAAAAAAAAAAAAADBBAAAwABBAMBAAAAAAAAAAAAAAECURMUUhESQSEEEQACAwEAAAAAAAAAAAAAAAAAEWEBEqH/wAARCAAOABgDASIAAhEAAxEA/9oADAMBAAIRAxEAPwDx6Y+pdmpP52wr28nbzpe2a9k0MdneCuyvAU1b5MmrfJjVx0KpP//Z";
 
-export function HomeCarousel() {
-  const router = useRouter();
-  const [active, setActive] = useState(0);
-  const slide = carousel[active];
+const featured = carousel[0];
+const mosaic = carousel.slice(1, 5);
+const connect = carousel[5];
 
-  const openSlide = useCallback(
-    (index: number) => {
-      router.push(carousel[index].href);
-    },
-    [router]
+function TileImage({
+  src,
+  alt,
+  priority = false,
+}: {
+  src: string;
+  alt: string;
+  priority?: boolean;
+}) {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      fill
+      priority={priority}
+      unoptimized={src.endsWith(".jpg")}
+      placeholder="blur"
+      blurDataURL={HERO_BLUR}
+      sizes="(min-width: 768px) 40vw, 100vw"
+      className="object-cover"
+    />
   );
+}
+
+export function HomeCarousel() {
+  const [capabilitiesOpen, setCapabilitiesOpen] = useState(false);
 
   return (
     <section
       data-home-lock
-      className="relative h-[100dvh] overflow-hidden bg-graphite text-paper"
+      className="relative bg-graphite text-paper md:h-[100dvh] md:overflow-hidden"
+      onMouseLeave={() => setCapabilitiesOpen(false)}
     >
-      {carousel.map((item, index) => (
-        <div
-          key={item.id}
-          className={cn(
-            "absolute inset-0 transition-opacity duration-700",
-            index === active ? "opacity-100" : "opacity-0"
-          )}
-          aria-hidden={index !== active}
-        >
-          <Image
-            src={item.image}
-            alt={item.alt}
-            fill
-            priority={index === 0}
-            fetchPriority={index === 0 ? "high" : "auto"}
-            unoptimized={item.image.endsWith(".jpg")}
-            placeholder="blur"
-            blurDataURL={HERO_BLUR}
-            sizes="100vw"
-            className="object-cover"
+      <div className="grid gap-2 px-3 pt-[4.75rem] pb-3 md:h-full md:grid-cols-3 md:grid-rows-4 md:gap-3 md:px-4 md:pt-[5.25rem] md:pb-4">
+        <div className="relative min-h-[22rem] overflow-hidden md:col-span-2 md:row-span-2 md:min-h-0">
+          <TileImage
+            src={featured.image}
+            alt={featured.alt}
+            priority
           />
-        </div>
-      ))}
-      <div className="absolute inset-0 bg-gradient-to-r from-graphite/90 via-graphite/55 to-graphite/25" />
-      <div className="absolute inset-0 bg-gradient-to-t from-graphite/90 via-graphite/20 to-graphite/30" />
-
-      <Container className="relative z-10 flex h-full flex-col pt-24 pb-0 md:pt-28">
-        <div className="flex min-h-0 flex-1 flex-col justify-end pb-6 md:pb-8">
-          <div className="max-w-4xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-graphite/88 via-graphite/55 to-graphite/15" />
+          <div className="relative flex h-full flex-col justify-end p-6 md:p-8">
             <ValueLine inverted />
-            {active === 0 ? (
-              <h1 className="font-display mt-5 text-[2.6rem] leading-[0.95] text-paper sm:text-6xl md:text-7xl lg:text-[5.1rem]">
-                Building defence
-                <br className="hidden sm:block" /> enterprise today
-              </h1>
-            ) : (
-              <h1 className="font-display mt-5 text-[2.35rem] leading-[0.98] text-paper sm:text-5xl md:text-6xl lg:text-[4.4rem]">
-                {slide.title}
-              </h1>
-            )}
-            <p className="mt-5 max-w-xl text-sm leading-relaxed text-paper/80 md:mt-7 md:text-lg">
-              {active === 0
-                ? "Trugro consults enterprises into India’s defence ecosystem — from product readiness to procurement."
-                : slide.dek}
+            <h1 className="font-display mt-4 max-w-xl text-4xl leading-[0.95] sm:text-5xl lg:text-6xl">
+              Building defence
+              <br /> enterprise today
+            </h1>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-paper/80 md:text-base">
+              Trugro consults enterprises into India’s defence ecosystem — from
+              product readiness to procurement.
             </p>
-            {slide.soon ? (
-              <p className="mt-8 text-[0.6875rem] tracking-[0.22em] uppercase text-growth">
-                Coming soon
-              </p>
-            ) : (
-              <div className="mt-8 md:mt-10">
-                <ArrowLink href={slide.href} inverted>
-                  {slide.cta} →
-                </ArrowLink>
-              </div>
-            )}
+            <div className="mt-6">
+              <ArrowLink href="/capabilities" inverted>
+                Explore capabilities →
+              </ArrowLink>
+            </div>
           </div>
         </div>
 
-        <nav
-          aria-label="Homepage sections"
-          className="shrink-0 border-t border-white/15"
+        <Link
+          href={featured.href}
+          className="group relative min-h-52 overflow-hidden md:row-span-2 md:min-h-0"
+          onMouseEnter={() => setCapabilitiesOpen(true)}
+          onFocus={() => setCapabilitiesOpen(true)}
         >
-          <ul className="flex overflow-x-auto">
-            {carousel.map((item, index) => {
-              const selected = index === active;
-              return (
-                <li
-                  key={item.id}
-                  className="min-w-[9.5rem] flex-1 border-r border-white/10 last:border-r-0"
-                >
-                  <button
-                    type="button"
-                    onMouseEnter={() => setActive(index)}
-                    onFocus={() => setActive(index)}
-                    onClick={() => openSlide(index)}
-                    aria-current={selected ? "true" : undefined}
-                    className={cn(
-                      "group flex h-full w-full flex-col items-start px-3 py-4 text-left transition-colors md:px-5 md:py-5",
-                      selected ? "bg-white/8" : "hover:bg-white/5"
-                    )}
-                  >
-                    <span
-                      className={cn(
-                        "h-0.5 w-full origin-left bg-growth transition-transform duration-500",
-                        selected ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                      )}
-                    />
-                    <span className="mt-3 text-[0.65rem] tracking-[0.2em] uppercase text-paper/55">
-                      {item.kicker}
-                    </span>
-                    <span className="mt-1 text-sm text-paper md:text-base">
-                      {item.label}
-                    </span>
-                    {item.soon ? (
-                      <span className="mt-1 text-[0.6rem] tracking-[0.16em] uppercase text-growth">
-                        Coming soon
-                      </span>
-                    ) : null}
-                  </button>
-                </li>
-              );
-            })}
+          <TileImage
+            src={capabilities[0].image}
+            alt={capabilities[0].alt}
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-graphite/85 via-graphite/25 to-graphite/10" />
+          <div className="relative flex h-full flex-col justify-end p-5 md:p-6">
+            <p className="text-[0.65rem] tracking-[0.18em] uppercase text-paper/70">
+              {featured.kicker}
+            </p>
+            <p className="mt-2 font-display text-3xl md:text-4xl">{featured.label}</p>
+            <p className="mt-2 line-clamp-3 text-sm text-paper/75">{featured.dek}</p>
+          </div>
+        </Link>
+
+        {mosaic.map((item, index) => (
+          <Link
+            key={item.id}
+            href={item.href}
+            onMouseEnter={() => setCapabilitiesOpen(false)}
+            className={cn(
+              "group relative min-h-44 overflow-hidden md:min-h-0",
+              index < 2 ? "md:row-start-3" : "md:row-start-4"
+            )}
+          >
+            <TileImage src={item.image} alt={item.alt} />
+            <div className="absolute inset-0 bg-gradient-to-t from-graphite/85 via-graphite/30 to-graphite/10" />
+            <div className="relative flex h-full flex-col justify-end p-4 md:p-5">
+              <p className="text-[0.62rem] tracking-[0.16em] uppercase text-paper/70">
+                {item.kicker}
+              </p>
+              <p className="mt-1 text-xl md:text-2xl">{item.label}</p>
+              {item.soon ? (
+                <p className="mt-1 text-[0.62rem] tracking-[0.16em] uppercase text-growth">
+                  Coming soon
+                </p>
+              ) : null}
+            </div>
+          </Link>
+        ))}
+
+        <Link
+          href={connect.href}
+          onMouseEnter={() => setCapabilitiesOpen(false)}
+          className="flex min-h-44 flex-col justify-end bg-ink p-5 md:col-start-3 md:row-span-2 md:row-start-3 md:min-h-0 md:p-6"
+        >
+          <p className="text-[0.7rem] tracking-[0.18em] uppercase text-growth">
+            Connect with us
+          </p>
+          <p className="font-display mt-3 text-2xl leading-tight md:text-3xl">
+            {connect.title}
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-paper/75">{connect.dek}</p>
+          <p className="link-underline mt-5 text-sm">Connect with us →</p>
+        </Link>
+      </div>
+
+      {capabilitiesOpen ? (
+        <div
+          className="absolute inset-x-3 top-[4.75rem] bottom-3 z-20 overflow-y-auto bg-paper p-5 text-graphite shadow-2xl md:inset-x-4 md:top-[5.25rem] md:bottom-4 md:p-8"
+          onMouseEnter={() => setCapabilitiesOpen(true)}
+        >
+          <p className="text-[0.7rem] tracking-[0.18em] uppercase text-stone">
+            Capabilities
+          </p>
+          <ul className="mt-6 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+            {capabilities.map((cap) => (
+              <li key={cap.slug}>
+                <Link href={`/capabilities/${cap.slug}`} className="group block">
+                  <span className="text-base text-graphite">
+                    {cap.title}
+                    <span aria-hidden="true"> →</span>
+                  </span>
+                  <span className="mt-2 block text-sm leading-relaxed text-stone">
+                    {capabilityExcerpt(cap.short)}
+                  </span>
+                </Link>
+              </li>
+            ))}
           </ul>
-        </nav>
-        <p className="sr-only">
-          Selected section: {slide.label}.{" "}
-          <Link href={slide.href}>Open {slide.label}</Link>
-        </p>
-      </Container>
+        </div>
+      ) : null}
     </section>
   );
 }

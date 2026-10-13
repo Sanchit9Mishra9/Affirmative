@@ -28,7 +28,7 @@ export const metadata: Metadata = pageMetadata({
 export default function TechnologyPage() {
   return (
     <>
-      <section className="bg-graphite pt-32 pb-20 text-paper md:pt-40 md:pb-28">
+      <section className="bg-graphite pt-28 pb-12 text-paper md:pt-32 md:pb-16">
         <Container>
           <Breadcrumbs
             inverted

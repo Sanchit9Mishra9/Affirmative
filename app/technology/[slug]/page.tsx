@@ -39,7 +39,7 @@ export default async function TechnologyDetailPage({ params }: Props) {
 
   return (
     <>
-      <section className="relative min-h-[70vh] overflow-hidden bg-graphite text-paper">
+      <section className="relative min-h-[46vh] overflow-hidden bg-graphite text-paper">
         <EditorialImage
           src={item.image}
           alt={item.alt}
@@ -48,7 +48,7 @@ export default async function TechnologyDetailPage({ params }: Props) {
           priority
         />
         <div className="absolute inset-0 bg-graphite/65" />
-        <Container className="relative flex min-h-[70vh] flex-col justify-end pb-16 pt-36">
+        <Container className="relative flex min-h-[46vh] flex-col justify-end pb-10 pt-28 md:pt-32">
           <Breadcrumbs
             inverted
             items={[
@@ -91,7 +91,7 @@ export default async function TechnologyDetailPage({ params }: Props) {
         </Container>
       </Section>
       {item.subsections ? (
-        <section className="border-t border-line py-24 md:py-32">
+        <section className="border-t border-line py-12 md:py-16">
           <Container>
             <Eyebrow>Dive deeper</Eyebrow>
             <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">

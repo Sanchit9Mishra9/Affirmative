@@ -25,7 +25,7 @@ export default function ContactPage() {
   return (
     <>
       <JsonLd data={faqJsonLd(faqs)} />
-      <section className="bg-paper pt-32 pb-12 md:pt-40">
+      <section className="bg-paper pt-28 pb-8 md:pt-32">
         <Container>
           <Breadcrumbs items={[{ name: "Contact", href: "/contact" }]} />
           <Eyebrow>Connect with us</Eyebrow>

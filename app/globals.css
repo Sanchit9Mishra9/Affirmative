@@ -113,10 +113,12 @@
     font-feature-settings: "ss01" on, "kern" on;
   }
 
-  html:has([data-home-lock]),
-  body:has([data-home-lock]) {
-    height: 100%;
-    overflow: hidden;
+  @media (min-width: 768px) {
+    html:has([data-home-lock]),
+    body:has([data-home-lock]) {
+      height: 100%;
+      overflow: hidden;
+    }
   }
 
   ::selection {
@@ -221,18 +223,18 @@
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.2em;
-  height: 1px;
+  bottom: -0.22em;
+  height: 3px;
   width: 100%;
-  transform: scaleX(0);
+  transform: scaleX(1);
   transform-origin: left;
-  background: var(--growth);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  background: #8fd400;
+  transition: background 0.3s ease;
 }
 
 .link-underline:hover::after,
 .link-underline:focus-visible::after {
-  transform: scaleX(1);
+  background: var(--growth);
 }
 
 .nav-link {
@@ -247,7 +249,7 @@
   position: absolute;
   left: 0;
   bottom: -6px;
-  height: 1px;
+  height: 3px;
   width: 100%;
   transform: scaleX(0);
   transform-origin: left;

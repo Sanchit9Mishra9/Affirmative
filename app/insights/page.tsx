@@ -23,7 +23,7 @@ export const metadata: Metadata = pageMetadata({
 export default function InsightsPage() {
   return (
     <>
-      <section className="bg-paper pt-32 pb-12 md:pt-40">
+      <section className="bg-paper pt-28 pb-8 md:pt-32">
         <Container>
           <Breadcrumbs items={[{ name: "Our Insights", href: "/insights" }]} />
           <Eyebrow>Our Insights</Eyebrow>

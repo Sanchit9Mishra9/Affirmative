@@ -25,7 +25,7 @@ export const metadata: Metadata = pageMetadata({
 export default function CapabilitiesPage() {
   return (
     <>
-      <section className="bg-graphite pt-32 pb-20 text-paper md:pt-40 md:pb-28">
+      <section className="bg-graphite pt-28 pb-12 text-paper md:pt-32 md:pb-16">
         <Container>
           <Breadcrumbs
             inverted
@@ -50,8 +50,8 @@ export default function CapabilitiesPage() {
                 Choose a capability.
               </h2>
               <p className="mt-4 max-w-sm text-stone">
-                Each heading opens a dedicated page — industry context, how we
-                work, and the impact of the engagement.
+                Explore the operational landscape, our strategic approach, and
+                the value we create across defence engagements.
               </p>
             </div>
             <div className="lg:col-span-8">
@@ -66,7 +66,7 @@ export default function CapabilitiesPage() {
                     </h3>
                     <p className="mt-3 max-w-2xl text-stone">{item.short}</p>
                     <p className="mt-5 text-sm tracking-wide text-graphite">
-                      <span className="link-underline">Open this capability</span>
+                      <span className="link-underline">Explore capability</span>
                     </p>
                   </Link>
                 </Reveal>

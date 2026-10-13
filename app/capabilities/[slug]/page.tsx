@@ -43,35 +43,38 @@ export default async function CapabilityPage({ params }: Props) {
   return (
     <>
       <JsonLd data={serviceJsonLd(item)} />
-      <section className="bg-paper pt-32 pb-16 md:pt-40">
-        <Container>
+      <section className="relative min-h-[46vh] overflow-hidden bg-graphite text-paper">
+        <EditorialImage
+          src={item.image}
+          alt={item.alt}
+          className="absolute inset-0 h-full w-full"
+          sizes="100vw"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-graphite/88 via-graphite/55 to-graphite/20" />
+        <Container className="relative flex min-h-[46vh] flex-col justify-end pb-10 pt-28 md:pb-12 md:pt-32">
           <Breadcrumbs
+            inverted
             items={[
               { name: "Capabilities", href: "/capabilities" },
-              { name: item.heroTitle ?? item.title, href: `/capabilities/${item.slug}` },
+              {
+                name: item.heroTitle ?? item.title,
+                href: `/capabilities/${item.slug}`,
+              },
             ]}
           />
-          <Eyebrow>Capabilities</Eyebrow>
-          <div className="mt-6 grid gap-10 lg:grid-cols-12">
-            <h1 className="font-display col-span-full max-w-4xl text-5xl text-graphite md:text-6xl lg:col-span-8 lg:text-7xl">
-              {item.heroTitle ?? item.title}
-            </h1>
-            <p className="max-w-md text-lg leading-relaxed text-stone lg:col-span-4 lg:pt-4">
-              {item.tagline}
-            </p>
-          </div>
+          <Eyebrow className="text-growth">Capabilities</Eyebrow>
+          <h1 className="font-display mt-3 max-w-4xl text-5xl md:text-6xl lg:text-7xl">
+            {item.heroTitle ?? item.title}
+          </h1>
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-paper/80">
+            {item.tagline}
+          </p>
         </Container>
       </section>
-      <EditorialImage
-        src={item.image}
-        alt={item.alt}
-        className="aspect-[21/8] w-full"
-        sizes="100vw"
-        priority
-      />
-      <Section>
+      <Section className="py-10 md:py-14">
         <Container>
-          <div className="grid gap-16 lg:grid-cols-12">
+          <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7">
               <GreenRule />
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-graphite">
@@ -81,9 +84,9 @@ export default async function CapabilityPage({ params }: Props) {
           </div>
         </Container>
       </Section>
-      <section className="border-t border-line bg-paper py-24 md:py-32">
+      <section className="border-t border-line bg-paper py-12 md:py-16">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-12">
+          <div className="grid items-start gap-6 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-4">
               <Eyebrow>The industry context</Eyebrow>
               <h2 className="font-display mt-4 text-3xl text-graphite md:text-4xl">
@@ -114,7 +117,7 @@ export default async function CapabilityPage({ params }: Props) {
           </ul>
         </Container>
       </Section>
-      <section className="border-t border-line bg-paper py-24 md:py-32">
+      <section className="border-t border-line bg-paper py-12 md:py-16">
         <Container>
           <Eyebrow>Impact spotlight</Eyebrow>
           <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">

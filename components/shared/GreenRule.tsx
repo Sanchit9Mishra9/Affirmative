@@ -36,9 +36,9 @@ export function ValueLine({
       )}
     >
       <span>Growth</span>
-      <GreenRule className="w-6" />
+      <span aria-hidden="true">|</span>
       <span>Trust</span>
-      <GreenRule className="w-6" />
+      <span aria-hidden="true">|</span>
       <span>Commitment</span>
     </p>
   );

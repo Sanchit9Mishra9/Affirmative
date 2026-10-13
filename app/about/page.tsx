@@ -26,7 +26,7 @@ export const metadata: Metadata = pageMetadata({
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-paper pt-32 pb-16 md:pt-40">
+      <section className="bg-paper pt-28 pb-8 md:pt-32">
         <Container>
           <Breadcrumbs items={[{ name: "About", href: "/about" }]} />
           <Eyebrow>About Trugro</Eyebrow>
@@ -68,7 +68,7 @@ export default function AboutPage() {
           </div>
         </Container>
       </Section>
-      <section className="border-t border-line bg-paper py-24 md:py-32">
+      <section className="border-t border-line bg-paper py-12 md:py-16">
         <Container>
           <Eyebrow>How we work</Eyebrow>
           <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">
@@ -87,7 +87,7 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
-      <section className="border-t border-line py-24 md:py-32">
+      <section className="border-t border-line py-12 md:py-16">
         <Container>
           <Eyebrow>Clients we work with</Eyebrow>
           <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">
@@ -98,7 +98,7 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
-      <section className="border-t border-line bg-paper py-24 md:py-32">
+      <section className="border-t border-line bg-paper py-12 md:py-16">
         <Container>
           <div className="grid items-start gap-12 lg:grid-cols-12">
             <div className="lg:col-span-5">

@@ -31,7 +31,7 @@ export function ConnectBlock({
   }
 
   return (
-    <section className={cn("border-t border-line bg-paper py-24 md:py-32", className)}>
+    <section className={cn("border-t border-line bg-paper py-12 md:py-16", className)}>
       <Container>
         <GreenRule className="mb-8 w-14" />
         <h2 className="font-display max-w-4xl text-4xl text-graphite md:text-6xl">

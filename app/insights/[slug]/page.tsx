@@ -42,7 +42,7 @@ export default async function InsightPage({ params }: Props) {
   return (
     <>
       <JsonLd data={articleJsonLd(item)} />
-      <article className="bg-paper pt-32 md:pt-40">
+      <article className="bg-paper pt-28 md:pt-32">
         <Container>
           <Breadcrumbs
             items={[

@@ -61,7 +61,7 @@ export default function PartnersPage() {
 
   return (
     <>
-      <section className="bg-paper pt-32 pb-16 md:pt-40">
+      <section className="bg-paper pt-28 pb-8 md:pt-32">
         <Container>
           <Breadcrumbs items={[{ name: "Partners", href: "/partners" }]} />
           <Eyebrow>Partners</Eyebrow>
@@ -75,7 +75,7 @@ export default function PartnersPage() {
           </p>
         </Container>
       </section>
-      <Section className="bg-secondary pt-12">
+      <Section className="bg-secondary py-8 md:py-12">
         <Container className="space-y-20">
           <PeopleGroup title="Practice leaders" people={practiceLeaders} />
           <PeopleGroup title="Leaders" people={practiceTeam} />

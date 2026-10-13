@@ -1034,6 +1034,11 @@ export function searchContent(query: string) {
   return results.slice(0, 8);
 }
 
+export function capabilityExcerpt(text: string) {
+  const sentence = text.split(/(?<=\.)\s/)[0]?.trim() || text;
+  return sentence.endsWith(".") ? sentence : `${sentence}.`;
+}
+
 export function getCapability(slug: string) {
   return capabilities.find((item) => item.slug === slug);
 }

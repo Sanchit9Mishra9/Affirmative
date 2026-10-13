@@ -18,7 +18,7 @@ export function Breadcrumbs({
       <nav aria-label="Breadcrumb" className="mb-6">
         <ol
           className={cn(
-            "flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.6875rem] tracking-[0.14em] uppercase",
+            "flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm tracking-[0.08em] uppercase md:text-base",
             inverted ? "text-paper/55" : "text-stone"
           )}
         >

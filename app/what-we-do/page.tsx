@@ -33,7 +33,7 @@ export default function WhatWeDoPage() {
           procurementSteps
         )}
       />
-      <section className="bg-graphite pt-32 pb-20 text-paper md:pt-40 md:pb-28">
+      <section className="bg-graphite pt-28 pb-12 text-paper md:pt-32 md:pb-16">
         <Container>
           <Breadcrumbs
             inverted
@@ -68,7 +68,7 @@ export default function WhatWeDoPage() {
           </ol>
         </Container>
       </Section>
-      <section className="border-t border-line bg-paper py-24 md:py-32">
+      <section className="border-t border-line bg-paper py-12 md:py-16">
         <Container>
           <Eyebrow>Capabilities</Eyebrow>
           <h2 className="font-display mt-4 max-w-3xl text-4xl text-graphite md:text-5xl">
@@ -108,7 +108,7 @@ export default function WhatWeDoPage() {
                       <p className="mt-4 max-w-md text-stone">{item.short}</p>
                       <p className="mt-6 text-sm tracking-wide text-graphite">
                         <span className="link-underline">
-                          Explore this capability
+                          Explore capability
                         </span>
                       </p>
                     </div>

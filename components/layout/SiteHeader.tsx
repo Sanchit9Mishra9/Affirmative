@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, Search, X } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
-import { capabilities, nav, technologies } from "@/lib/content";
+import { capabilities, capabilityExcerpt, nav, technologies } from "@/lib/content";
 import { cn } from "@/lib/utils";
 import { SearchDialog } from "@/components/layout/SearchDialog";
 
@@ -116,48 +116,68 @@ export function SiteHeader() {
                         : [];
 
                   return (
-                    <li key={item.label} className="border-b border-line">
-                      <div className="flex items-center justify-between gap-4">
-                        <Link
-                          href={item.href}
-                          className="flex-1 py-4 font-display text-3xl text-graphite md:text-4xl"
-                        >
-                          {item.label}
-                          {"soon" in item && item.soon ? (
-                            <span className="ml-3 align-middle text-[0.65rem] tracking-[0.18em] uppercase text-stone">
-                              Coming soon
-                            </span>
-                          ) : null}
-                        </Link>
-                        {hasChildren ? (
-                          <button
-                            type="button"
-                            aria-expanded={isOpen}
-                            aria-label={`${isOpen ? "Hide" : "Show"} ${item.label} pages`}
-                            onClick={() =>
-                              setExpanded((current) =>
-                                current === item.label ? null : item.label
-                              )
-                            }
-                            className="px-2 py-4 text-sm text-stone"
-                          >
-                            {isOpen ? "–" : "+"}
-                          </button>
+                    <li
+                      key={item.label}
+                      className="border-b border-line"
+                      onMouseEnter={() => {
+                        if (hasChildren) setExpanded(item.label);
+                      }}
+                      onMouseLeave={() => {
+                        if (hasChildren) setExpanded(null);
+                      }}
+                    >
+                      <Link
+                        href={item.href}
+                        className="flex flex-1 items-baseline py-4 font-display text-3xl text-graphite md:text-4xl"
+                      >
+                        {item.label}
+                        {"soon" in item && item.soon ? (
+                          <span className="ml-3 align-middle text-[0.65rem] tracking-[0.18em] uppercase text-stone">
+                            Coming soon
+                          </span>
                         ) : null}
-                      </div>
-                      {hasChildren && isOpen ? (
-                        <ul className="grid gap-x-8 pb-6 sm:grid-cols-2">
-                          {childItems.map((child) => (
-                            <li key={child.href}>
-                              <Link
-                                href={child.href}
-                                className="block py-2 text-sm text-stone hover:text-graphite"
-                              >
-                                {child.title}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
+                      </Link>
+                      {hasChildren ? (
+                        <div
+                          className={cn(
+                            "pb-6",
+                            isOpen ? "block" : "max-md:block md:hidden"
+                          )}
+                        >
+                          {item.children === "capabilities" ? (
+                            <ul className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
+                              {capabilities.map((cap) => (
+                                <li key={cap.slug}>
+                                  <Link
+                                    href={`/capabilities/${cap.slug}`}
+                                    className="group block"
+                                  >
+                                    <span className="text-base text-graphite group-hover:text-ink">
+                                      {cap.title}
+                                      <span aria-hidden="true"> →</span>
+                                    </span>
+                                    <span className="mt-1 block text-sm leading-relaxed text-stone">
+                                      {capabilityExcerpt(cap.short)}
+                                    </span>
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <ul className="grid gap-x-8 sm:grid-cols-2">
+                              {childItems.map((child) => (
+                                <li key={child.href}>
+                                  <Link
+                                    href={child.href}
+                                    className="block py-2 text-base text-stone hover:text-graphite"
+                                  >
+                                    {child.title}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
                       ) : null}
                     </li>
                   );
@@ -165,15 +185,15 @@ export function SiteHeader() {
               </ul>
             </div>
             <div className="md:col-span-4 md:col-start-9">
-              <p className="text-[0.6875rem] tracking-[0.2em] uppercase text-stone">
+              <p className="text-sm tracking-[0.2em] uppercase text-stone">
                 Connect with us
               </p>
-              <p className="editorial mt-4 text-2xl text-graphite">
+              <p className="editorial mt-4 text-3xl text-graphite md:text-4xl">
                 Tell us about the product and the service you want to reach.
               </p>
               <Link
                 href="/contact"
-                className="mt-8 inline-flex text-sm tracking-wide text-graphite"
+                className="mt-8 inline-flex text-lg tracking-wide text-graphite"
               >
                 <span className="link-underline">Write to Trugro</span>
               </Link>
